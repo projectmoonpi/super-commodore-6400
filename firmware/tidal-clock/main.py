@@ -1,4 +1,4 @@
-# Super Commodore 6400 - Tidal (C)lock firmware (MicroPython for the Raspberry Pi Pico H), rev 0.1
+# Tidal Array 6400 - Tidal (C)lock firmware (MicroPython for the Raspberry Pi Pico H), rev 0.1
 # Designed and Created by Project Moon Pi.
 #
 # At power-on it sets the Si5351 up for the two NTSC C64 clocks and opens every port's gate, so each C64 plugged in

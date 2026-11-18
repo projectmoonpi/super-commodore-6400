@@ -1,5 +1,5 @@
 ; =============================================================================================
-;  Super Commodore 6400 -- CORE: load this on every worker C64. It sets the screen up, says it is
+;  Tidal Array 6400 -- CORE: load this on every worker C64. It sets the screen up, says it is
 ;  waiting, and then only obeys the leader over the link (src/common.asm). The leader uploads the job,
 ;  tells the core its number, and hands it work.
 ;  LOAD"PACK CORE",8 then RUN.
@@ -22,7 +22,7 @@ SIG     = $0f00                         ; "PACK" + version: the leader reads thi
 start   jsr setup
         jsr print
         !word TROW
-        !scr "super commodore 6400", 0
+        !scr "tidal array 6400    ", 0
         jsr print
         !word TROW + 40
         !scr "core: waiting for the leader", 0

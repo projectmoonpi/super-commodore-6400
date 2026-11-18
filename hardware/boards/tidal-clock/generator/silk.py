@@ -40,7 +40,7 @@ def fixed(board):
     # ---- top
     for k in range(1, 5):
         x, y = pos(board, f"J{k}")
-        text(board, f"(C64 {k})", x, y - 7.5, 1.0, bold=True)
+        text(board, f"(COMP {k})", x, y - 7.5, 1.0, bold=True)
     for ref, what in (("TP1", "(COLOR)"), ("TP2", "(DOT)"), ("TP3", "(DOT 5V)"), ("TP4", "(GND)"), ("TP5", "(GND)")):
         x, y = pos(board, ref)
         text(board, what, x + 3.0, y, 0.8, align="left")
@@ -49,13 +49,13 @@ def fixed(board):
     x, y = pos(board, "D1")
     text(board, "(POWER)", x, y + 2.6, 0.8)
     text(board, "TIDAL (C)LOCK", 76.0, 33.0, 1.8, bold=True)
-    text(board, "SUPER COMMODORE 6400   SMT rev 0.1", 76.0, 35.6, 0.9)
+    text(board, "TIDAL ARRAY 6400   SMT rev 0.1", 76.0, 35.6, 0.9)
     # ---- back: title, logo, credit, and the ports' pin names (the rule: header pin names on the back)
     # (in the open area on the right, behind the title: no via may go under printing, so it must stay clear of
     # the logic chips' fan-out)
     add_logo(board, os.path.join(HERE, "logo_silk.json"), (68.0, 33.5), 7.0, B, mirror=True)
     text(board, "Tidal (C)lock", 84.0, 31.0, 1.4, bold=True, layer=B)
-    text(board, "Super Commodore 6400   SMT rev 0.1", 84.0, 33.0, 0.8, layer=B)
+    text(board, "Tidal Array 6400   SMT rev 0.1", 84.0, 33.0, 0.8, layer=B)
     text(board, "Designed and Created by", 84.0, 35.0, 0.8, bold=True, layer=B)
     text(board, "Project Moon Pi", 84.0, 36.6, 0.8, bold=True, layer=B)
     names = {"1": "G", "2": "DOT", "3": "G", "4": "COL", "5": "G", "6": "PHI0"}

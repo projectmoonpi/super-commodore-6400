@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Guide 1: the two-core user-port link cable.  -> docs/guides/SC6400-Guide-1-Link-Cable.pdf
+"""Build Guide 1: the two-core user-port link cable.  -> docs/guides/TA6400-Guide-1-Link-Cable.pdf
 
 Every diagram is drawn here (reportlab), so the guide stays in step with the wiring in src/common.asm.
 Designed and Created by Project Moon Pi.
@@ -14,7 +14,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "docs" / "guides" / "SC6400-Guide-1-Link-Cable.pdf"
+OUT = ROOT / "docs" / "guides" / "TA6400-Guide-1-Link-Cable.pdf"
 LOGO = ROOT / "docs" / "img" / "project-moon-pi-logo.png"
 PATCH = ROOT / "docs" / "img" / "project-moon-pi-patch.png"     # the same badge, transparent background
 FONTS = Path(__file__).resolve().parent / "fonts"
@@ -59,7 +59,7 @@ class Guide:
         self.toc = []
         OUT.parent.mkdir(parents=True, exist_ok=True)
         self.c = canvas.Canvas(str(OUT), pagesize=letter)
-        self.c.setTitle("Super Commodore 6400 - Build Guide 1: the user-port link cable")
+        self.c.setTitle("Tidal Array 6400 - Build Guide 1: the user-port link cable")
         self.c.setAuthor("Project Moon Pi")
         self.page = 0
 
@@ -94,7 +94,7 @@ class Guide:
         c = self.c
         c.setFont("Helvetica", 8)
         c.setFillColor(GREY)
-        c.drawString(M, 30, "Super Commodore 6400 - Build Guide 1: the user-port link cable")
+        c.drawString(M, 30, "Tidal Array 6400 - Build Guide 1: the user-port link cable")
         c.drawRightString(W - M, 30, f"Designed and Created by Project Moon Pi   -   page {self.page}")
 
     def para(self, text, size=10.5, lead=14, width=None, x=None, color=black, font="Helvetica", gap=6):
@@ -546,7 +546,7 @@ def draw_schematic(g, top):
     c.rect(W - M - 250, tb_y, 250, 48, stroke=1, fill=0)
     c.line(W - M - 250, tb_y + 24, W - M, tb_y + 24)
     c.setFont("Helvetica-Bold", 9)
-    c.drawString(W - M - 244, tb_y + 32, "Super Commodore 6400: user-port link cable")
+    c.drawString(W - M - 244, tb_y + 32, "Tidal Array 6400: user-port link cable")
     c.setFont("Helvetica", 8)
     c.drawString(W - M - 244, tb_y + 9, "Rev 0.1   Sheet 1/1   Project Moon Pi")
     return tb_y - 10
@@ -584,7 +584,7 @@ def stripes(c, x0, y0, x1, y1, width):
 
 
 def cover(g):
-    """A Commodore 64 start-up screen that says SC6400, the Moon Pi stripes, the patch (as on the M.O.S.S. guides)."""
+    """A Commodore 64 start-up screen that says TA6400, the Moon Pi stripes, the patch (as on the M.O.S.S. guides)."""
     c = g.c
     g.page = 1
     c.bookmarkPage("p1")
@@ -597,11 +597,11 @@ def cover(g):
     c.setFillColor(C64_SCREEN)
     c.roundRect(sx, sy, sw, sh, 18, stroke=0, fill=1)
     top = sy + sh
-    spaced(c, W / 2, top - 0.55 * inch, "**** SUPER COMMODORE 6400 V0.1 ****", "B612-Bold", 14, C64_TEXT, 2, "center")
+    spaced(c, W / 2, top - 0.55 * inch, "**** TIDAL ARRAY 6400 V0.1 ****", "B612-Bold", 14, C64_TEXT, 2, "center")
     spaced(c, W / 2, top - 0.86 * inch, "2 CORES   128K RAM SYSTEM   NTSC", "B612", 9, C64_TEXT, 1.2, "center")
-    spaced(c, W / 2, top - 2.5 * inch, "SC6400", "B612-Bold", 74, C64_TEXT, 3.5, "center")
-    spaced(c, W / 2, top - 3.0 * inch, "SUPER COMMODORE 6400", "B612-Bold", 14, C64_TEXT, 2.4, "center")
-    spaced(c, W / 2, top - 3.28 * inch, "MANY COMMODORE 64S. ONE MACHINE.", "B612-Bold", 11, C64_TEXT, 1.8, "center")
+    spaced(c, W / 2, top - 2.5 * inch, "TA6400", "B612-Bold", 74, C64_TEXT, 3.5, "center")
+    spaced(c, W / 2, top - 3.0 * inch, "TIDAL ARRAY 6400", "B612-Bold", 14, C64_TEXT, 2.4, "center")
+    spaced(c, W / 2, top - 3.28 * inch, "MANY 64S. ONE MACHINE.", "B612-Bold", 11, C64_TEXT, 1.8, "center")
     spaced(c, sx + 0.4 * inch, sy + 0.8 * inch, "READY.", "B612-Bold", 13, C64_TEXT, 2)
     c.setFillColor(C64_TEXT)
     c.rect(sx + 0.4 * inch, sy + 0.42 * inch, 9, 13, stroke=0, fill=1)
@@ -680,7 +680,7 @@ def build(toc_in=None):
     g.heading("Where you start")
     g.bullets([
         "**Two NTSC Commodore 64s** that work, any board revision, each with a power supply and a monitor or TV.",
-        "**A way to load programs on each one:** a 1541 or SD2IEC with the disk sc6400.d64, a Kung Fu Flash with "
+        "**A way to load programs on each one:** a 1541 or SD2IEC with the disk ta6400.d64, a Kung Fu Flash with "
         "the .prg or .crt files, or the cartridge images burned to EPROM cartridges.",
         f"**The parts on page {g.pg('Parts and tools')}.** About $25 for the cable, plus tools you probably already have.",
     ])
@@ -718,7 +718,7 @@ def build(toc_in=None):
             c.setLineWidth(2)
             c.line(x0 + bw + 2, y0 + 32, x0 + bw + gap - 2, y0 + 32)
     g.y = y0 - 22
-    g.para("The finished Super Commodore 6400 joins **8 or more C64s** through a shared-memory hub on their cartridge "
+    g.para("The finished Tidal Array 6400 joins **8 or more C64s** through a shared-memory hub on their cartridge "
            "ports, all running from one clock. This cable is the first step. It proves the software, the protocol "
            "and the speed-up on real machines, using parts you can buy today.")
     g.note("This cable carries signals only, no power. Only ever plug it in or unplug it with BOTH computers "
@@ -1156,7 +1156,7 @@ def build(toc_in=None):
 
     # ======== credits ========
     g.new_page("Credits")
-    g.para("This guide and the Super Commodore 6400 stand on the work of many people. Thank you.")
+    g.para("This guide and the Tidal Array 6400 stand on the work of many people. Thank you.")
     g.bullets([
         "**Design, software, this guide and the Project Moon Pi logo:** Project Moon Pi.",
         "**User port pinout and CIA 6526 behaviour:** the Commodore 64 Programmer's Reference Guide (Commodore) and "

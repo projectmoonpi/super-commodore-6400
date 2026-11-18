@@ -1,5 +1,5 @@
 /*
- * packsim -- two (or more) C64s joined by user-port cables, for testing the Super Commodore 6400 link.
+ * packsim -- two (or more) C64s joined by user-port cables, for testing the Tidal Array 6400 link.
  *
  * Each machine: a 6510 (all documented opcodes, cycle counts with page-cross and branch penalties),
  * 64 KB RAM, the C64 memory map ($01: char ROM, I/O; no BASIC/KERNAL ROMs -- our programs do not use

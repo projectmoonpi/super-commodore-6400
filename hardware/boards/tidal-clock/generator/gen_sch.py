@@ -108,7 +108,7 @@ def place(p, x, y, unit, sym):
 GROUPS = [("pico", "RASPBERRY PI PICO H, POWER LIGHT, SCOPE POINTS, MOUNTING HOLES"),
           ("synth", "CLOCK SYNTHESIZER: Si5351A, 25 MHz CRYSTAL (CLK0 = COLOUR 14.318182, CLK1 = DOT 8.181818 MHz)"),
           ("gates", "GLITCH-FREE DOT-CLOCK GATES (ONE PER PORT) AND COLOUR BUFFERS"),
-          ("ports", "PORTS 1-4 (TO EACH C64'S TIDAL LINK INTERFACE) AND THE PHI0 INPUTS")]
+          ("ports", "PORTS 1-4 (TO EACH COMPUTER'S TIDAL LINK INTERFACE) AND THE PHI0 INPUTS")]
 
 # shelf packing: each block in its own box, the boxes filling the page left to right, top to bottom
 x0, y0, shelf_h = 15.0, 25.0, 0.0
@@ -152,12 +152,12 @@ for grp, title in GROUPS:
     x0 += block_w + 12
     shelf_h = max(shelf_h, block_h)
 
-items.append([Sym("text"), "SUPER COMMODORE 6400  -  TIDAL (C)LOCK  rev 0.1  -  Designed and Created by Project Moon Pi",
+items.append([Sym("text"), "TIDAL ARRAY 6400  -  TIDAL (C)LOCK  rev 0.1  -  Designed and Created by Project Moon Pi",
               [Sym("exclude_from_sim"), Sym("no")], [Sym("at"), 15.0, 12.0, 0], eff(5.0, justify="left", bold=True), U()])
 
 sch = [Sym("kicad_sch"), [Sym("version"), 20250114], [Sym("generator"), "hub_gen_sch"],
        [Sym("generator_version"), "1"], [Sym("uuid"), ROOT], [Sym("paper"), "A3"],
-       [Sym("title_block"), [Sym("title"), "Super Commodore 6400 Tidal (C)lock"], [Sym("rev"), "0.1"],
+       [Sym("title_block"), [Sym("title"), "Tidal Array 6400 Tidal (C)lock"], [Sym("rev"), "0.1"],
         [Sym("company"), "Project Moon Pi"], [Sym("comment"), 1, "Designed and Created by Project Moon Pi"], [Sym("comment"), 2, "4 ports: Si5351A + 74HCT gates + Raspberry Pi Pico H"]],
        [Sym("lib_symbols")] + list(lib_syms.values())] + items + \
       [[Sym("sheet_instances"), [Sym("path"), "/", [Sym("page"), "1"]]]]

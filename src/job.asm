@@ -1,5 +1,5 @@
 ; =============================================================================================
-;  Super Commodore 6400 -- the benchmark job: one Mandelbrot tile.
+;  Tidal Array 6400 -- the benchmark job: one Mandelbrot tile.
 ;  This block ($2C00-$3FFF, entry points at $3000) is the same on every core. The leader runs it from its own memory and
 ;  uploads it to each worker core over the link, so a core needs nothing but the small kernel.
 ;

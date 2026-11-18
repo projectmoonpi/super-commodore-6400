@@ -105,7 +105,7 @@ def place(p, x, y, unit, sym):
                        eff(1.0, True)]])
 
 
-GROUPS = [("vic", "THE VIC-II: PLUG BELOW (TO THE C64), SOCKET ABOVE (FOR THE CHIP); PINS 21 + 22 GO VIA SW1"),
+GROUPS = [("vic", "THE VIC-II: PLUG BELOW (TO THE COMPUTER), SOCKET ABOVE (FOR THE CHIP); PINS 21 + 22 GO VIA SW1"),
           ("clock", "CLOCK SELECT (INT/EXT), BUFFER, CABLE TO THE TIDAL (C)LOCK BOARD"),
           ("test", "SCOPE TEST POINTS")]
 
@@ -151,12 +151,12 @@ for grp, title in GROUPS:
     x0 += block_w + 12
     shelf_h = max(shelf_h, block_h)
 
-items.append([Sym("text"), "SUPER COMMODORE 6400  -  TIDAL LINK INTERFACE (TLI)  THROUGH-HOLE EDITION  rev 0.1  -  Designed and Created by Project Moon Pi",
+items.append([Sym("text"), "TIDAL ARRAY 6400  -  TIDAL LINK INTERFACE (TLI)  THROUGH-HOLE EDITION  rev 0.1  -  Designed and Created by Project Moon Pi",
               [Sym("exclude_from_sim"), Sym("no")], [Sym("at"), 15.0, 12.0, 0], eff(5.0, justify="left", bold=True), U()])
 
 sch = [Sym("kicad_sch"), [Sym("version"), 20250114], [Sym("generator"), "hub_gen_sch"],
        [Sym("generator_version"), "1"], [Sym("uuid"), ROOT], [Sym("paper"), "A3"],
-       [Sym("title_block"), [Sym("title"), "Super Commodore 6400 Tidal Link Interface (through-hole)"], [Sym("rev"), "0.1"],
+       [Sym("title_block"), [Sym("title"), "Tidal Array 6400 Tidal Link Interface (through-hole)"], [Sym("rev"), "0.1"],
         [Sym("company"), "Project Moon Pi"], [Sym("comment"), 1, "Designed and Created by Project Moon Pi"], [Sym("comment"), 2, "VIC-II pinout: C64 Programmer's Reference Guide, appendix N"]],
        [Sym("lib_symbols")] + list(lib_syms.values())] + items + \
       [[Sym("sheet_instances"), [Sym("path"), "/", [Sym("page"), "1"]]]]

@@ -2,14 +2,14 @@
 	(version "E")
 	(design
 		(source "/Users/ricsne/CLAUDE CODE PROJECTS/super-commodore-6400/hardware/boards/tidal-clock-tht/generator/out/tidal-clock-tht.kicad_sch")
-		(date "2026-11-18T06:35:55")
+		(date "2026-11-18T07:02:23")
 		(tool "Eeschema 10.0.7")
 		(sheet
 			(number "1")
 			(name "/")
 			(tstamps "/")
 			(title_block
-				(title "Super Commodore 6400 Tidal (C)lock (through-hole)")
+				(title "Tidal Array 6400 Tidal (C)lock (through-hole)")
 				(company "Project Moon Pi")
 				(rev "0.1")
 				(date)
@@ -1032,7 +1032,7 @@
 			(ref "J1")
 			(value "PORT 1")
 			(footprint "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical")
-			(description "to C64 1's Tidal Link Interface (J3)")
+			(description "to computer 1's Tidal Link Interface (J3)")
 			(fields
 				(field
 					(name "Manufacturer") "Wurth Elektronik")
@@ -1044,7 +1044,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "to C64 1's Tidal Link Interface (J3)")
+					(name "Description") "to computer 1's Tidal Link Interface (J3)")
 			)
 			(libsource
 				(lib "Connector_Generic")
@@ -1110,7 +1110,7 @@
 			(ref "J2")
 			(value "PORT 2")
 			(footprint "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical")
-			(description "to C64 2's Tidal Link Interface (J3)")
+			(description "to computer 2's Tidal Link Interface (J3)")
 			(fields
 				(field
 					(name "Manufacturer") "Wurth Elektronik")
@@ -1122,7 +1122,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "to C64 2's Tidal Link Interface (J3)")
+					(name "Description") "to computer 2's Tidal Link Interface (J3)")
 			)
 			(libsource
 				(lib "Connector_Generic")
@@ -1188,7 +1188,7 @@
 			(ref "J3")
 			(value "PORT 3")
 			(footprint "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical")
-			(description "to C64 3's Tidal Link Interface (J3)")
+			(description "to computer 3's Tidal Link Interface (J3)")
 			(fields
 				(field
 					(name "Manufacturer") "Wurth Elektronik")
@@ -1200,7 +1200,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "to C64 3's Tidal Link Interface (J3)")
+					(name "Description") "to computer 3's Tidal Link Interface (J3)")
 			)
 			(libsource
 				(lib "Connector_Generic")
@@ -1266,7 +1266,7 @@
 			(ref "J4")
 			(value "PORT 4")
 			(footprint "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical")
-			(description "to C64 4's Tidal Link Interface (J3)")
+			(description "to computer 4's Tidal Link Interface (J3)")
 			(fields
 				(field
 					(name "Manufacturer") "Wurth Elektronik")
@@ -1278,7 +1278,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "to C64 4's Tidal Link Interface (J3)")
+					(name "Description") "to computer 4's Tidal Link Interface (J3)")
 			)
 			(libsource
 				(lib "Connector_Generic")
@@ -3437,10 +3437,10 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "60b4f724-341c-4e03-91a6-b801d601d4e2" "ee01679c-6111-4295-bed3-781cb1d6288d"
-				"64e07cb6-1978-4c11-b53b-53984ba856a4" "e0c7f265-f7e6-4438-bffb-aade966cd1cd"
-				"303c6239-3275-4071-8ed1-621fe8e12ba3" "ba28d95e-d2ff-49e2-899d-a19fa4d05b96"
-				"2421963b-9f85-4829-a7ae-28254980f75f"
+			(tstamps "303c6239-3275-4071-8ed1-621fe8e12ba3" "8c4b7643-850b-41cb-b398-6e9e8aa23a8f"
+				"9a15fa1e-e115-4a9e-a977-253672b192a8" "2f109f34-3808-4678-bf08-14d0313089e3"
+				"445e01bf-a1d9-4d66-a8b6-e1754725449d" "294c94a4-03f9-4317-9d2a-1fc2c653e153"
+				"1d899ac1-5a2c-4d00-8565-5ad203ef8046"
 			)
 			(units
 				(unit
@@ -3573,8 +3573,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f0462b5e-0438-481b-a7d9-b1523dd5793a" "b9df5e40-ad1c-4efe-b92e-f8943f591595"
-				"97c46e4d-3958-493d-aa6b-b16f819a11a8"
+			(tstamps "f0462b5e-0438-481b-a7d9-b1523dd5793a" "2e0674b2-ff43-4446-a50e-4b25a91ad4f4"
+				"096e203d-1a9a-4d86-9355-4ff56ad06f13"
 			)
 			(units
 				(unit
@@ -3687,8 +3687,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f310556f-727c-4fa9-83d3-ca3b0d3b7d2b" "fb6abec3-dd45-4e79-891b-963f76f92d09"
-				"c197afdd-d981-4b76-985f-ebc58cbf10c3"
+			(tstamps "6b462829-24f4-412d-a00f-65fb687b5bfb" "fb6abec3-dd45-4e79-891b-963f76f92d09"
+				"22573781-b05d-4b75-9494-efddb5adf7fa"
 			)
 			(units
 				(unit
@@ -3801,9 +3801,9 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e8eef5c5-5df9-4906-b2a1-dd803c92ce36" "89f0279c-de5d-4afd-bfd4-64a5d1f97763"
-				"7b8df493-5018-4f08-afc5-cf17a7eb6fda" "251b6460-0427-44a3-92bf-cc42722cd0be"
-				"1975d2d1-7fa0-41fa-b0a2-6a2cc6b7daef"
+			(tstamps "d38466de-7685-44d7-8f24-cffeee324ad8" "63a3df26-376d-482b-9dc3-4e09bb82c08e"
+				"1975d2d1-7fa0-41fa-b0a2-6a2cc6b7daef" "bc15a110-1afd-4241-b978-fd4c23c9327f"
+				"0ca0cb33-b8cd-46ce-8640-86ba33c51c8c"
 			)
 			(units
 				(unit
@@ -3926,8 +3926,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bfca198d-401b-4297-8d01-bce4d77f9265" "f2c5138e-4330-448d-b9db-6e106f3370a8"
-				"d62acef6-4150-47d3-aadf-3a58e4be6910" "e3e9f290-43c1-4333-b9e5-02fbac3d27e0"
+			(tstamps "5a16e341-0cb7-4766-8bc6-64108c06ca56" "ff8ae2d9-2a8b-46d0-98e5-6b03e656b50a"
+				"4bdd15d5-16a2-4b6f-a798-4a1b73bf6a34" "6be96a9e-435c-4ddb-a749-3c5635e4b829"
 				"323ba753-cd2d-4817-ab95-b11ac03dd96a"
 			)
 			(units

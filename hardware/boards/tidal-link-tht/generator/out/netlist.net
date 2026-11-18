@@ -2,14 +2,14 @@
 	(version "E")
 	(design
 		(source "/Users/ricsne/CLAUDE CODE PROJECTS/super-commodore-6400/hardware/boards/tidal-link-tht/generator/out/tidal-link-tht.kicad_sch")
-		(date "2026-11-18T06:36:15")
+		(date "2026-11-18T07:03:05")
 		(tool "Eeschema 10.0.7")
 		(sheet
 			(number "1")
 			(name "/")
 			(tstamps "/")
 			(title_block
-				(title "Super Commodore 6400 Tidal Link Interface (through-hole)")
+				(title "Tidal Array 6400 Tidal Link Interface (through-hole)")
 				(company "Project Moon Pi")
 				(rev "0.1")
 				(date)
@@ -188,9 +188,9 @@
 		)
 		(comp
 			(ref "J1")
-			(value "PLUG (C64 VIC socket)")
+			(value "PLUG (VIC-II socket)")
 			(footprint "Package_DIP:DIP-40_W15.24mm")
-			(description "40 round pins underneath: two 20-pin strips that plug into the C64's VIC-II socket")
+			(description "40 round pins underneath: two 20-pin strips that plug into the computer's VIC-II socket")
 			(fields
 				(field
 					(name "Manufacturer") "Mill-Max")
@@ -202,7 +202,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "40 round pins underneath: two 20-pin strips that plug into the C64's VIC-II socket")
+					(name "Description") "40 round pins underneath: two 20-pin strips that plug into the computer's VIC-II socket")
 			)
 			(libsource
 				(lib "Connector_Generic")
@@ -958,7 +958,7 @@
 			(ref "SW1")
 			(value "INT/EXT")
 			(footprint "Button_Switch_THT:SW_CK_JS202011CQN_DPDT_Straight")
-			(description "Clock source: INT = the C64's own, EXT = the Tidal (C)lock board. Switch only with the C64 off.")
+			(description "Clock source: INT = the computer's own, EXT = the Tidal (C)lock board. Switch only with the power off.")
 			(fields
 				(field
 					(name "Manufacturer") "C&K")
@@ -970,7 +970,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Clock source: INT = the C64's own, EXT = the Tidal (C)lock board. Switch only with the C64 off.")
+					(name "Description") "Clock source: INT = the computer's own, EXT = the Tidal (C)lock board. Switch only with the power off.")
 			)
 			(libsource
 				(lib "Switch")
@@ -1005,7 +1005,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a96b0ca2-6409-4782-a83c-32081c559e0f" "2bb40ece-a30e-40ee-a021-20fc6913d897")
+			(tstamps "bcb3e7bc-d3b7-42ab-b549-3a9366060efa" "a96b0ca2-6409-4782-a83c-32081c559e0f")
 			(units
 				(unit
 					(name "A")
@@ -1403,10 +1403,10 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "775d3646-f74b-4272-a328-2b7f91d17e14" "4df5aa81-65b1-44f8-9b85-1c50abeeb51d"
-				"7f7ef14b-d61c-4152-a8a9-b4fac6b51576" "4b4be386-b0f0-4c3d-9a87-4179967432ad"
-				"6d88ff9d-eaaa-40db-9250-74cdcea2ba80" "e4344def-5c3a-4c2c-b620-d7a305f41fce"
-				"451aa960-d72f-44b7-adde-7f073c155f7b"
+			(tstamps "0b5a7097-6aca-4782-a606-f0858563a272" "451aa960-d72f-44b7-adde-7f073c155f7b"
+				"86d11738-7a39-4780-b8a7-297d0a8dcc48" "52ba70df-c247-444b-b053-fa50307b0425"
+				"62320a07-926e-49d2-b1a6-f452d777618a" "89c673aa-e571-43ec-a715-66e0031dd380"
+				"00dd03ac-bef2-40d4-83f6-6ba4ab49ae1f"
 			)
 			(units
 				(unit

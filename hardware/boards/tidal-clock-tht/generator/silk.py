@@ -46,7 +46,7 @@ def fixed(board):
     for k in range(1, 5):
         x, y = pos(board, f"J{k}")
         # under its box header, right of where its J number goes (the resistors' numbers fill the row above it)
-        text(board, f"(C64 {k})", pad(board, f"J{k}", "3")[0] + 2.2, 91.0, 1.0, bold=True, align="left")
+        text(board, f"(COMP {k})", pad(board, f"J{k}", "3")[0] + 2.2, 91.0, 1.0, bold=True, align="left")
     for ref, what in (("TP1", "(COLOR)"), ("TP2", "(DOT)"), ("TP3", "(DOT 5V)"), ("TP4", "(GND)"), ("TP5", "(GND)")):
         x, y = pos(board, ref)
         text(board, what, x + 2.6, y, 0.8, align="left")
@@ -64,12 +64,12 @@ def fixed(board):
     text(board, "CLK0", c1[0], c1[1] - 2.2, 0.8, bold=True)
     text(board, "VIN", c7[0], c7[1] - 2.2, 0.8, bold=True)
     text(board, "TIDAL (C)LOCK", 16.5, 30.5, 1.8, bold=True)
-    text(board, "SUPER COMMODORE 6400", 16.5, 33.2, 0.9)
+    text(board, "TIDAL ARRAY 6400", 16.5, 33.2, 0.9)
     text(board, "THROUGH-HOLE EDITION   rev 0.1", 16.5, 35.0, 0.9)
     # ---- back: title, logo, credit (between the Pico's two pin rows), and the ports' pin names
     add_logo(board, os.path.join(HERE, "logo_silk.json"), (17.0, 14.5), 8.0, B, mirror=True)
     text(board, "Tidal (C)lock", 40.0, 11.2, 1.4, bold=True, layer=B)
-    text(board, "Super Commodore 6400   THT rev 0.1", 40.0, 13.4, 0.8, layer=B)
+    text(board, "Tidal Array 6400   THT rev 0.1", 40.0, 13.4, 0.8, layer=B)
     text(board, "Designed and Created by", 40.0, 15.6, 0.8, bold=True, layer=B)
     text(board, "Project Moon Pi", 40.0, 17.2, 0.8, bold=True, layer=B)
     names = {"1": "G", "2": "DOT", "3": "G", "4": "COL", "5": "G", "6": "PHI0"}

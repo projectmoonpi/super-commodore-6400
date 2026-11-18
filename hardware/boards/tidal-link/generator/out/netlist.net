@@ -2,14 +2,14 @@
 	(version "E")
 	(design
 		(source "/Users/ricsne/CLAUDE CODE PROJECTS/super-commodore-6400/hardware/boards/tidal-link/generator/out/tidal-link.kicad_sch")
-		(date "2026-11-18T06:14:58")
+		(date "2026-11-18T07:02:43")
 		(tool "Eeschema 10.0.7")
 		(sheet
 			(number "1")
 			(name "/")
 			(tstamps "/")
 			(title_block
-				(title "Super Commodore 6400 Tidal Link Interface")
+				(title "Tidal Array 6400 Tidal Link Interface")
 				(company "Project Moon Pi")
 				(rev "0.1")
 				(date)
@@ -188,9 +188,9 @@
 		)
 		(comp
 			(ref "J1")
-			(value "PLUG (C64 VIC socket)")
+			(value "PLUG (VIC-II socket)")
 			(footprint "Package_DIP:DIP-40_W15.24mm")
-			(description "40 round pins underneath: two 20-pin strips that plug into the C64's VIC-II socket")
+			(description "40 round pins underneath: two 20-pin strips that plug into the computer's VIC-II socket")
 			(fields
 				(field
 					(name "Manufacturer") "Mill-Max")
@@ -202,7 +202,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "40 round pins underneath: two 20-pin strips that plug into the C64's VIC-II socket")
+					(name "Description") "40 round pins underneath: two 20-pin strips that plug into the computer's VIC-II socket")
 			)
 			(libsource
 				(lib "Connector_Generic")
@@ -958,7 +958,7 @@
 			(ref "SW1")
 			(value "INT/EXT")
 			(footprint "Button_Switch_SMD:SW_DPDT_CK_JS202011JCQN")
-			(description "Clock source: INT = the C64's own, EXT = the Tidal (C)lock board. Switch only with the C64 off.")
+			(description "Clock source: INT = the computer's own, EXT = the Tidal (C)lock board. Switch only with the power off.")
 			(fields
 				(field
 					(name "Manufacturer") "C&K")
@@ -970,7 +970,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Clock source: INT = the C64's own, EXT = the Tidal (C)lock board. Switch only with the C64 off.")
+					(name "Description") "Clock source: INT = the computer's own, EXT = the Tidal (C)lock board. Switch only with the power off.")
 			)
 			(libsource
 				(lib "Switch")
@@ -1005,7 +1005,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d1b50556-ecb5-49b7-a76b-38c9ff455d79" "b20ddf13-ed2f-40f3-835e-e46b794bbd7a")
+			(tstamps "b20ddf13-ed2f-40f3-835e-e46b794bbd7a" "9b9726aa-cb03-4578-83a3-68fb88db6009")
 			(units
 				(unit
 					(name "A")
@@ -1403,8 +1403,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e85db262-1448-4036-abf0-92568f8ed714" "be78071e-8501-4f87-9110-ea35b4d56ff8"
-				"7ffe97fe-e556-4704-9fa0-def96c2127a5" "4939cc3c-675f-449f-a3ce-295067623156"
+			(tstamps "e85db262-1448-4036-abf0-92568f8ed714" "8a9e767a-4115-469a-8492-b7b168b65d83"
+				"684b2743-f1ca-4e50-a613-5ac74ded5a0e" "3926e973-b5ae-47a8-9ab2-d6c8f7efb0f8"
 			)
 			(units
 				(unit

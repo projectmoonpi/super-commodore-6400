@@ -1,5 +1,5 @@
 ; =============================================================================================
-;  Super Commodore 6400 -- LEADER: load this on the C64 with the monitor you watch.
+;  Tidal Array 6400 -- LEADER: load this on the C64 with the monitor you watch.
 ;  It finds the worker core on the user-port link, uploads the job, then runs the benchmark with as
 ;  many cores as you choose: a Mandelbrot picture cut into 200 tiles, handed out one at a time to
 ;  whichever core is free (the leader computes tiles too, it is core 0). Each core paints its tiles in
@@ -72,10 +72,10 @@ menu    jsr title
         jmp menu
 }
 
-; ---- title line: "SUPER COMMODORE 6400 CORES n KEYS 1-n,S" -----------------------------------
+; ---- title line: "TIDAL ARRAY 6400 CORES n KEYS 1-n,S" -----------------------------------
 title   jsr print
         !word TROW
-        !scr "super commodore 6400 cores 0 keys 1-0,s", 0
+        !scr "tidal array 6400     cores 0 keys 1-0,s", 0
         lda ncores
         ora #$30
         sta TROW + 27
@@ -87,7 +87,7 @@ scan    lda #1
         sta ncores
         jsr print
         !word TROW
-        !scr "super commodore 6400 scanning the link ", 0
+        !scr "tidal array 6400     scanning the link ", 0
         jsr l_init
         lda #2
         jsr l_sendt                     ; READ, with a time-out: is anyone there?
@@ -164,7 +164,7 @@ corestat !scr "core 1: linked to the leader            "
 run     sta nrun
         jsr print
         !word TROW
-        !scr "super commodore 6400 running on 0 cores", 0
+        !scr "tidal array 6400     running on 0 cores", 0
         lda nrun
         ora #$30
         sta TROW + 32

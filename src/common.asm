@@ -1,5 +1,5 @@
 ; =============================================================================================
-;  Super Commodore 6400 -- shared by the leader and the cores: machine set-up, the screen split
+;  Tidal Array 6400 -- shared by the leader and the cores: machine set-up, the screen split
 ;  (multicolour bitmap rows 0-19, text rows 20-24), text printing, and the user-port link.
 ;  Designed and Created by Project Moon Pi.
 ;

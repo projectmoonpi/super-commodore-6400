@@ -1,4 +1,4 @@
-"""Super Commodore 6400 - Tidal Link Interface (TLI), rev 0.1: the VIC clock interposer, one per C64.
+"""Tidal Array 6400 - Tidal Link Interface (TLI), rev 0.1: the VIC clock interposer, one per C64.
 
 Plugs into a C64's VIC-II socket; the VIC-II plugs into it. Every pin passes straight through except the two
 clock inputs, which go through a slide switch:
@@ -41,8 +41,8 @@ def part(ref, lib, value, fp, pins, group, desc="", mfr="", mpn=""):
 # the plug (to the C64's socket) and the socket (for the VIC): the same pins, except the two clock inputs
 plug = {n: (f"MB_{s}" if n in (21, 22) else s) for n, s in VIC_PINS.items()}
 sock = {n: (f"VIC_{s}" if n in (21, 22) else s) for n, s in VIC_PINS.items()}
-part("J1", "Connector_Generic:Conn_02x20_Counter_Clockwise", "PLUG (C64 VIC socket)", FP_DIP, plug, "vic",
-     "40 round pins underneath: two 20-pin strips that plug into the C64's VIC-II socket", "Mill-Max",
+part("J1", "Connector_Generic:Conn_02x20_Counter_Clockwise", "PLUG (VIC-II socket)", FP_DIP, plug, "vic",
+     "40 round pins underneath: two 20-pin strips that plug into the computer's VIC-II socket", "Mill-Max",
      "350-10-164-00-006000 (one 64-pin strip, snapped into two 20s)")
 part("J2", "Connector_Generic:Conn_02x20_Counter_Clockwise", "SOCKET (VIC-II)", FP_DIP, sock, "vic",
      "VIC-II socket on top: two 20-pin machined socket strips, one per row (open between them, so the plug's "
@@ -51,7 +51,7 @@ part("J2", "Connector_Generic:Conn_02x20_Counter_Clockwise", "SOCKET (VIC-II)", 
 # the clock selector: pole A = dot clock (pin 22), pole B = colour clock (pin 21); 1-2 / 4-5 = INT, 2-3 / 5-6 = EXT
 part("SW1", "Switch:SW_DPDT_x2", "INT/EXT", FP_SW,
      {1: "MB_PHIN", 2: "VIC_PHIN", 3: "DOT_EXT", 4: "MB_PHCL", 5: "VIC_PHCL", 6: "COLOR_EXT"}, "clock",
-     "Clock source: INT = the C64's own, EXT = the Tidal (C)lock board. Switch only with the C64 off.", "C&K",
+     "Clock source: INT = the computer's own, EXT = the Tidal (C)lock board. Switch only with the power off.", "C&K",
      "JS202011JCQN")
 
 # buffer: the cable's two clocks in, PHI0 out to the cable (so the cable never loads the C64's system clock)

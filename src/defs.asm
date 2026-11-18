@@ -1,5 +1,5 @@
 ; =============================================================================================
-;  Super Commodore 6400 -- addresses and zero page shared by the leader and the cores.
+;  Tidal Array 6400 -- addresses and zero page shared by the leader and the cores.
 ;  Included first, so zero-page names assemble as zero-page addresses.
 ; =============================================================================================
 

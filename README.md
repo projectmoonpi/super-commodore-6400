@@ -1,7 +1,7 @@
 <p align="center"><img src="docs/img/project-moon-pi-logo.png" width="200" alt="Project Moon Pi"></p>
 <p align="center"><b>Designed and Created by Project Moon Pi</b></p>
 
-# Super Commodore 6400
+# Tidal Array 6400
 
 Several **NTSC Commodore 64s** joined into one machine. Each C64 is a "core". One leader hands out work, and
 every core, the leader included, computes its share. The goal is a pack of 8 or more C64s, sharing RAM through
@@ -38,9 +38,9 @@ core loses the same share, so the speed-up is unchanged.
 ## What you need
 
 - 2 NTSC C64s, each able to load the programs. Any of these works:
-  - a disk drive with `sc6400.d64`, or an SD2IEC / Pi1541;
+  - a disk drive with `ta6400.d64`, or an SD2IEC / Pi1541;
   - the `.prg` files on a Kung Fu Flash or other SD cartridge;
-  - the cartridge images: `sc6400-leader.crt` and `sc6400-core.crt`. These are Magic Desk cartridges (32 KB
+  - the cartridge images: `ta6400-leader.crt` and `ta6400-core.crt`. These are Magic Desk cartridges (32 KB
     and 16 KB) for a Kung Fu Flash, or burned to a Magic Desk-compatible EPROM cartridge. They start the
     program at power-on, and the reset button starts it again.
 - A user-port-to-user-port cable (below).
@@ -48,7 +48,7 @@ core loses the same share, so the speed-up is unchanged.
 ## The cable
 
 **Build it with the illustrated guide:
-[Build Guide 1: the user-port link cable (PDF)](docs/guides/SC6400-Guide-1-Link-Cable.pdf).** It covers your
+[Build Guide 1: the user-port link cable (PDF)](docs/guides/TA6400-Guide-1-Link-Cable.pdf).** It covers your
 start and end goals, drawings of the finished cable and of the two C64s hooked up, a schematic, the parts
 with DigiKey part numbers, how to find pin 1 on your C64, colour-coded wiring
 and solder maps, numbered steps, a digital-multimeter test checklist, the first run, and troubleshooting. The table below
@@ -114,7 +114,7 @@ cycle count.
 
 ## Building and testing
 
-`./build.sh` assembles everything with ACME, writes `build/sc6400.d64` and the two cartridge images
+`./build.sh` assembles everything with ACME, writes `build/ta6400.d64` and the two cartridge images
 (`src/cart.asm`, `tools/make_crt.py`), and runs the test.
 
 VICE 3.8 can't connect two C64s through their user ports. So `tools/packsim.c` simulates two C64s joined by

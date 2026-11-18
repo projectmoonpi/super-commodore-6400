@@ -1,4 +1,4 @@
-"""PCBWay order packages for the Super Commodore 6400 THROUGH-HOLE boards (the bench-test pair), plus the DigiKey
+"""PCBWay order packages for the Tidal Array 6400 THROUGH-HOLE boards (the bench-test pair), plus the DigiKey
 parts list for building them yourself. Follows ~/CLAUDE CODE PROJECTS/PCBWAY-ORDERS.md (from the Competition Timer's
 package script). Every part on these boards is through-hole, so the two versions per board are:
 
@@ -8,7 +8,7 @@ package script). Every part on these boards is through-hole, so the two versions
     B_BARE-BOARD_you-solder   PCBWay makes the bare board only; every part comes from DigiKey and you solder it.
 
 The Gerbers are the same for both versions; each folder carries its own copy so it is complete on its own.
-Also writes manufacturing/bom/SC6400-THT-bench-set_DigiKey.xlsx + .csv (1 Tidal (C)lock + 2 TLIs + 2 clock cables),
+Also writes manufacturing/bom/TA6400-THT-bench-set_DigiKey.xlsx + .csv (1 Tidal (C)lock + 2 TLIs + 2 clock cables),
 with DigiKey's own part numbers and live stock (moss-dash's DigiKey connector).
 
     python3 hardware/boards/common/pcbway_package.py          (from the project root; needs openpyxl)
@@ -59,14 +59,14 @@ BOARDS = [
          ic_sockets=["U2", "U3", "U4", "U5", "U6"],
          notes=[]),
     dict(folder="2_TLI-THT", short="TLI", rel="hardware/boards/tidal-link-tht/generator/out/tidal-link-tht.kicad_pcb",
-         title="Tidal Link Interface (TLI), through-hole edition, rev 0.1 (one per C64, in its VIC-II socket)",
+         title="Tidal Link Interface (TLI), through-hole edition, rev 0.1 (one per computer, in its VIC-II socket)",
          socket_for={}, loose=[], ic_sockets=["U1"],
          notes=["J1 (the plug, 40 round pins) is fitted from the BOTTOM: pins point DOWN, soldered on the TOP. Cut "
                 "one Mill-Max 350-10-164-00-006000 64-pin strip into two 20-pin strips (one per row). Fit J1 FIRST.",
                 "J2 (the VIC-II socket) is two 20-way socket strips on the TOP, one per row, soldered on the bottom, "
                 "fitted AFTER J1 (its holes are one row in from J1's, so the two never share a hole).",
                 "Keep every lead on the bottom trimmed flush (under 1.5 mm): the board sits about 7 mm above the "
-                "C64's motherboard."]),
+                "computer's motherboard."]),
 ]
 VERSIONS = [("A_FULL-ASSEMBLY_all-THT", "FULL-ASSEMBLY", True),
             ("B_BARE-BOARD_you-solder", "BARE-BOARD", False)]
@@ -284,7 +284,7 @@ def main():
             short_list.append(f"{mfr} {mpn}")
         rows.append([i, mfr, mpn, dkn or "(none found)", e["qty"], e["value"], "; ".join(e["used"]), have, price,
                      line_total])
-        csv_rows.append([dkn or "", mpn, mfr, e["qty"], f"SC6400 THT bench: {'; '.join(e['used'])}"[:60]])
+        csv_rows.append([dkn or "", mpn, mfr, e["qty"], f"TA6400 THT bench: {'; '.join(e['used'])}"[:60]])
     wb = Workbook()
     ws = sheet(wb, "Bench set (1 clock, 2 TLI)",
                ["Item #", "Manufacturer", "Mfg Part #", "DigiKey #", "Qty", "What", "Where it goes", "DigiKey stock",
@@ -292,7 +292,7 @@ def main():
                rows, [7, 24, 24, 24, 6, 50, 50, 12, 11, 10], first=True)
     ws.append([]); ws.append(["", "", "", "", "", "", "", "", "Total $", round(total, 2)])
     ws.cell(ws.max_row, 9).font = BOLD; ws.cell(ws.max_row, 10).font = BOLD
-    base = os.path.join(BOMDIR, "SC6400-THT-bench-set_DigiKey")
+    base = os.path.join(BOMDIR, "TA6400-THT-bench-set_DigiKey")
     wb.save(base + ".xlsx")
     with open(base + ".csv", "w", newline="") as fh:
         w = csv.writer(fh)

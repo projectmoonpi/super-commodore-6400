@@ -1,4 +1,4 @@
-"""Super Commodore 6400 - Tidal (C)lock, THROUGH-HOLE EDITION, rev 0.1: one master clock for up to 4 C64s.
+"""Tidal Array 6400 - Tidal (C)lock, THROUGH-HOLE EDITION, rev 0.1: one master clock for up to 4 C64s.
 
 The same circuit as the SMT edition (hardware/boards/tidal-clock), built from parts you can solder by hand and buy
 today, so the bench test can start before any assembled board arrives:
@@ -122,7 +122,7 @@ for k in range(1, NPORTS + 1):
     R("2k", f"PH{k}_IN", "GND", "ports", f"port {k}: no cable reads low")
     part(f"J{k}", "Connector_Generic:Conn_02x03_Odd_Even", f"PORT {k}", FP_IDC,
          {1: "GND", 2: f"PDOT{k}", 3: "GND", 4: f"PCOL{k}", 5: "GND", 6: f"PPH{k}"}, "ports",
-         f"to C64 {k}'s Tidal Link Interface (J3)", "Wurth Elektronik", "61200621621")
+         f"to computer {k}'s Tidal Link Interface (J3)", "Wurth Elektronik", "61200621621")
 
 # ---------------------------------------------------------------- power light, scope points, mounting holes
 part("D1", "Device:LED", "green", FP_LED, {1: "GND", 2: "LED_A"}, "pico", "power light, 3 mm green (long lead = +)",

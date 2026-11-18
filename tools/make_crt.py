@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Make Magic Desk cartridge images (CRT hardware type 19) of the leader and the core.
 
-  build/sc6400-leader.crt   boots PACK LEADER
-  build/sc6400-core.crt     boots PACK CORE
+  build/ta6400-leader.crt   boots PACK LEADER
+  build/ta6400-core.crt     boots PACK CORE
 
 Bank 0 is the boot code (src/cart.asm). The next banks hold the program without its two-byte load
 address; the boot code copies them to $0801, switches the cartridge off and starts the program at 2061.
@@ -38,5 +38,5 @@ def make(prg_name, crt_name, title):
 
 
 if __name__ == "__main__":
-    make("leader.prg", "sc6400-leader.crt", "SUPER COMMODORE 6400 LEADER")
-    make("core.prg", "sc6400-core.crt", "SUPER COMMODORE 6400 CORE")
+    make("leader.prg", "ta6400-leader.crt", "TIDAL ARRAY 6400 LEADER")
+    make("core.prg", "ta6400-core.crt", "TIDAL ARRAY 6400 CORE")

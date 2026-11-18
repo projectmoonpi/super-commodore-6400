@@ -69,7 +69,7 @@ def fixed(board):
     p1, p3 = pad("SW1", "1"), pad("SW1", "3")
     text(board, "INT", p1[0] - 0.6, 1.1, 0.8, bold=True)    # pin 1 end: the C64's own clocks
     text(board, "EXT", p3[0] + 0.6, 1.1, 0.8, bold=True)    # pin 3 end: the Tidal (C)lock board
-    text(board, "(C64 OFF ONLY)", 54.3, 21.6, 0.8, angle=90)   # the switch: upright, between the VIC and the TPs
+    text(board, "(POWER OFF ONLY)", 54.3, 21.6, 0.8, angle=90)   # the switch: upright, between the VIC and the TPs
     # the scope points and the resistor column: numbers printed by hand in straight columns (the part-number
     # placer would scatter them in this tight corner)
     for ref, what in (("TP1", "(PHI0)"), ("TP2", "(DOT)"), ("TP3", "(COLOR)"), ("TP4", "(GND)"), ("TP5", "(GND)")):
@@ -82,15 +82,15 @@ def fixed(board):
     jx, jy = pcbnew.ToMM(j3.GetPosition().x), pcbnew.ToMM(j3.GetPosition().y)
     text(board, "(TO TIDAL (C)LOCK)", jx + 1.27, jy - 6.3, 0.8)
     text(board, "TIDAL LINK INTERFACE (TLI)", 28.0, 12.6, 1.4, bold=True)      # under the chip: seen with it out
-    text(board, "SUPER COMMODORE 6400   THT rev 0.1", 28.0, 15.0, 0.9)
+    text(board, "TIDAL ARRAY 6400   THT rev 0.1", 28.0, 15.0, 0.9)
     # ---- back: the side that faces the C64
-    text(board, "THIS SIDE DOWN: INTO THE C64'S VIC-II SOCKET", 28.0, 8.0, 1.0, bold=True, layer=B)
+    text(board, "THIS SIDE DOWN: INTO THE VIC-II SOCKET", 28.0, 8.0, 1.0, bold=True, layer=B)
     text(board, "< PIN 1", 4.0 + 3.6, 17.4, 0.9, bold=True, layer=B)   # above-right of pin 1's hole, pointing at it
-    text(board, "CLOCK SWITCH: ONLY WITH THE C64 SWITCHED OFF", 28.0, 23.2, 0.9, layer=B)
+    text(board, "CLOCK SWITCH: ONLY WITH THE POWER SWITCHED OFF", 28.0, 23.2, 0.9, layer=B)
     add_logo(board, os.path.join(HERE, "logo_silk.json"), (16.0, 12.4), 6.6, B, mirror=True)
     text(board, "Designed and Created by Project Moon Pi", 34.0, 11.6, 0.9, bold=True, layer=B)
     text(board, "Tidal Link Interface (TLI)", 34.0, 13.3, 0.8, bold=True, layer=B)
-    text(board, "Super Commodore 6400   THT rev 0.1", 34.0, 14.9, 0.8, layer=B)
+    text(board, "Tidal Array 6400   THT rev 0.1", 34.0, 14.9, 0.8, layer=B)
     # J3's pin names on the back, as the rule asks: the edge row (2, 4, 6) and the inner row (1, 3, 5)
     pads = {pd.GetNumber(): pd.GetPosition() for pd in j3.Pads()}
     names = {"1": "G", "2": "DOT", "3": "G", "4": "COL", "5": "G", "6": "PHI0"}

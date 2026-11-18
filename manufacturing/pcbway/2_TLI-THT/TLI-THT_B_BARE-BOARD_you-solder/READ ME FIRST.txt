@@ -1,4 +1,4 @@
-TLI-THT  -  Tidal Link Interface (TLI), through-hole edition, rev 0.1 (one per C64, in its VIC-II socket)
+TLI-THT  -  Tidal Link Interface (TLI), through-hole edition, rev 0.1 (one per computer, in its VIC-II socket)
 BARE BOARD ONLY: PCBWay makes the board; you solder the parts
 ==============================================================================
 
@@ -15,7 +15,7 @@ Order form (2 layers, no layer pop-up):
 
 Assembly note: J1 (the plug, 40 round pins) is fitted from the BOTTOM: pins point DOWN, soldered on the TOP. Cut one Mill-Max 350-10-164-00-006000 64-pin strip into two 20-pin strips (one per row). Fit J1 FIRST.
 Assembly note: J2 (the VIC-II socket) is two 20-way socket strips on the TOP, one per row, soldered on the bottom, fitted AFTER J1 (its holes are one row in from J1's, so the two never share a hole).
-Assembly note: Keep every lead on the bottom trimmed flush (under 1.5 mm): the board sits about 7 mm above the C64's motherboard.
+Assembly note: Keep every lead on the bottom trimmed flush (under 1.5 mm): the board sits about 7 mm above the computer's motherboard.
 
 Gerber zip holds: TLI-B_Cu.gbl, TLI-B_Mask.gbs, TLI-B_Silkscreen.gbo, TLI-Edge_Cuts.gm1, TLI-F_Cu.gtl, TLI-F_Mask.gts, TLI-F_Silkscreen.gto, TLI-NPTH-drl_map.gbr, TLI-NPTH.drl, TLI-PTH-drl_map.gbr, TLI-PTH.drl, TLI-job.gbrjob
 

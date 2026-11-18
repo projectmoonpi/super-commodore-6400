@@ -1,5 +1,5 @@
 ; =============================================================================================
-;  Super Commodore 6400 -- cartridge boot (Magic Desk type: 8 KB banks at $8000, bank select at
+;  Tidal Array 6400 -- cartridge boot (Magic Desk type: 8 KB banks at $8000, bank select at
 ;  $de00, bit 7 switches the cartridge off).
 ;  Bank 0 is this code. Banks 1..NB hold the program (leader.prg or core.prg without its
 ;  load address). At power-on the boot code sets the machine up as the KERNAL would, copies a small
