@@ -43,7 +43,7 @@ plug = {n: (f"MB_{s}" if n in (21, 22) else s) for n, s in VIC_PINS.items()}
 sock = {n: (f"VIC_{s}" if n in (21, 22) else s) for n, s in VIC_PINS.items()}
 part("J1", "Connector_Generic:Conn_02x20_Counter_Clockwise", "PLUG (C64 VIC socket)", FP_DIP, plug, "vic",
      "40 round pins underneath: two 20-pin strips that plug into the C64's VIC-II socket", "Mill-Max",
-     "350-10-120-00-001000 (x2)")
+     "350-10-164-00-006000 (one 64-pin strip, snapped into two 20s)")
 part("J2", "Connector_Generic:Conn_02x20_Counter_Clockwise", "SOCKET (VIC-II)", FP_DIP, sock, "vic",
      "VIC-II socket on top: two 20-pin machined socket strips, one per row (open between them, so the plug's "
      "solder joints underneath stay clear)", "Preci-Dip", "310-87-120-41-001101 (x2)")

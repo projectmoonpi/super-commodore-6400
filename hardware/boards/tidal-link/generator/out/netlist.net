@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/Users/ricsne/CLAUDE CODE PROJECTS/super-commodore-6400/hardware/boards/tidal-link/generator/out/tidal-link.kicad_sch")
-		(date "2026-11-18T05:45:04")
+		(date "2026-11-18T06:14:58")
 		(tool "Eeschema 10.0.7")
 		(sheet
 			(number "1")
@@ -195,7 +195,7 @@
 				(field
 					(name "Manufacturer") "Mill-Max")
 				(field
-					(name "MPN") "350-10-120-00-001000 (x2)")
+					(name "MPN") "350-10-164-00-006000 (one 64-pin strip, snapped into two 20s)")
 				(field
 					(name "Footprint") "Package_DIP:DIP-40_W15.24mm")
 				(field
@@ -215,7 +215,7 @@
 			)
 			(property
 				(name "MPN")
-				(value "350-10-120-00-001000 (x2)")
+				(value "350-10-164-00-006000 (one 64-pin strip, snapped into two 20s)")
 			)
 			(property
 				(name "Sheetname")
@@ -1005,7 +1005,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "b20ddf13-ed2f-40f3-835e-e46b794bbd7a" "3658294d-f1ce-46a3-9b67-78428e674734")
+			(tstamps "d1b50556-ecb5-49b7-a76b-38c9ff455d79" "b20ddf13-ed2f-40f3-835e-e46b794bbd7a")
 			(units
 				(unit
 					(name "A")
@@ -1403,8 +1403,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e85db262-1448-4036-abf0-92568f8ed714" "f0de9760-c9d5-4f54-9320-d02d901fe29f"
-				"df90816f-b235-4836-b206-abe4687af547" "1e46d98f-8539-48bb-971d-67b9b95a518f"
+			(tstamps "e85db262-1448-4036-abf0-92568f8ed714" "be78071e-8501-4f87-9110-ea35b4d56ff8"
+				"7ffe97fe-e556-4704-9fa0-def96c2127a5" "4939cc3c-675f-449f-a3ce-295067623156"
 			)
 			(units
 				(unit
