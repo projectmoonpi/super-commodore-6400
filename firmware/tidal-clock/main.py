@@ -14,13 +14,16 @@
 #
 # Wiring (the Tidal (C)lock board, hardware/boards/tidal-clock): I2C0 SDA GP0, SCL GP1 (Si5351 at 0x60); gates EN1-EN4 on
 # GP2-GP5 (high = pulses pass); each port's PHI0 in on GP6-GP9; the ungated dot clock on GP10.
+# GP11 tells the two editions apart: held low by a 1k resistor on the through-hole board (hardware/boards/
+# tidal-clock-tht, Adafruit's Si5351 board: its crystal wants the 10 pF load setting), open on the SMT board (its own
+# Kyocera CX3225GB crystal: 8 pF). Same pins, same commands otherwise.
 
 import time
 import rp2
 from machine import I2C, Pin
 
 SI5351 = 0x60
-EN_BASE, PH_BASE, DOT_PIN = 2, 6, 10
+EN_BASE, PH_BASE, DOT_PIN, EDITION_PIN = 2, 6, 10, 11
 NPORTS = 4
 DOT_HZ = 315_000_000 / 22 * 4 / 7          # 8.181818 MHz
 SYS_HZ = 125_000_000
@@ -41,10 +44,19 @@ def params(a, b, c):
             ((p3 >> 12) & 0xF0) | ((p2 >> 16) & 0x0F), (p2 >> 8) & 0xFF, p2 & 0xFF]
 
 
-def start_clocks(i2c):
+def edition():
+    """'THT' when GP11 is held low (the through-hole board's strap), else 'SMT'."""
+    return "THT" if Pin(EDITION_PIN, Pin.IN, Pin.PULL_UP).value() == 0 else "SMT"
+
+
+XTAL_LOAD = {"SMT": 0x92,                          # 8 pF: the SMT board's Kyocera CX3225GB 25 MHz crystal
+             "THT": 0xD2}                          # 10 pF: the Adafruit board's crystal (Adafruit's own library setting)
+
+
+def start_clocks(i2c, board="SMT"):
     si_write(i2c, 3, [0xFF])                       # all outputs off while setting up
     si_write(i2c, 16, [0x80] * 8)                  # all output drivers powered down
-    si_write(i2c, 183, [0x92])                     # crystal load 8 pF (the CX3225GB 25 MHz crystal's)
+    si_write(i2c, 183, [XTAL_LOAD[board]])         # the crystal's load capacitance (bits 7-6)
     si_write(i2c, 149, [0x00])                     # no spread spectrum
     si_write(i2c, 26, params(32, 4, 55))           # PLL A: 25 MHz x (32 + 4/55) = 801.818182 MHz
     si_write(i2c, 42, params(56, 0, 1))            # MS0: / 56 = 14.318182 MHz (colour clock)
@@ -80,8 +92,9 @@ def sampler():
 
 class PackClock:
     def __init__(self):
+        self.board = edition()
         self.i2c = I2C(0, sda=Pin(0), scl=Pin(1), freq=400_000)
-        start_clocks(self.i2c)
+        start_clocks(self.i2c, self.board)
         dot = Pin(DOT_PIN, Pin.IN)
         self.drop_sm = rp2.StateMachine(0, dropper, freq=SYS_HZ, in_base=dot, out_base=Pin(EN_BASE),
                                         set_base=Pin(EN_BASE))
@@ -160,7 +173,7 @@ class PackClock:
 
 
 def console(pc):
-    print("Tidal (C)lock ready: 14.318182 + 8.181818 MHz on all ports. Type help.")
+    print(f"Tidal (C)lock ({pc.board} edition) ready: 14.318182 + 8.181818 MHz on all ports. Type help.")
     while True:
         try:
             cmd = input("tidal> ").split()
