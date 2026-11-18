@@ -343,13 +343,16 @@ def build():
     g.bullets([
         "Soldering iron (fine tip) and solder; a heat gun or lighter for the heat-shrink.",
         "Wire strippers for 28 AWG, and side cutters.",
-        "**A multimeter** with continuity beep and DC volts. You use it to find pin 1 on your C64, and to test the "
-        "cable before it ever touches a computer.",
+        "**A digital multimeter (DMM).** Any handheld one will do if it has these three settings: **DC volts** "
+        "(marked V with a straight line, or VDC), **resistance** (marked ohm or with the omega sign) and "
+        "**continuity** (the beeper, usually marked with a sound-wave symbol). You use it to find pin 1 on your C64, "
+        "and to test the cable before it ever touches a computer. You don't need an oscilloscope, a logic probe or a "
+        "clamp meter for this build.",
         "Masking tape and a pen, to label the ends A and B.",
     ])
     g.note("The connectors have no key, so they can go on upside down. That's why page 4 shows you how to find "
-           "pin 1 on your C64 with a meter, and why you mark pin 1 on each connector before soldering.",
-           color=NAVY, title="Why the paint pen and the meter matter")
+           "pin 1 on your C64 with the digital multimeter, and why you mark pin 1 on each connector before soldering.",
+           color=NAVY, title="Why the paint pen and the digital multimeter matter")
 
     # ======== 4. know the user port ========
     g.new_page("Know the user port", "Page 4")
@@ -386,7 +389,8 @@ def build():
     g.y -= 58
     g.heading("Find pin 1 on YOUR C64 (do this once per computer)")
     g.para("Diagrams are easy to read backwards, so let the computer tell you. Switch the C64 **on**, with nothing "
-           "plugged into the user port. Set the meter to DC volts.")
+           "plugged into the user port. Set the **digital multimeter to DC volts** (the 20 V range, if it doesn't choose "
+           "the range itself). Black lead in the **COM** socket, red lead in the **V** socket.")
     g.bullets([
         "Put the black probe on the **top contact at the left end** (pin 1, ground).",
         "Touch the red probe to the **next top contact** (pin 2). It reads **+5 V**: you have found pin 1. Stop here.",
@@ -561,12 +565,18 @@ def build():
 
     # ======== 8. test before plugging in ========
     g.new_page("Test before it touches a computer", "Page 8")
-    g.para("Use the meter on the cable alone, with nothing plugged in. Tick each line. **Every line must pass "
+    g.para("Use the **digital multimeter** on the cable alone, with nothing plugged in: black lead in **COM**, red "
+           "lead in the **V / ohm** socket. Each check below names the setting to use. Tick each line. **Every line must pass "
            "before you plug the cable into a C64.**")
-    tests = [(f"A-{p}  to  B-{p}  ({n})", "about 330 ohm") for n, p, _ in DATA]
-    tests += [("A-8  to  B-B   (PC2 to FLAG)", "beep (0 ohm)"), ("A-B  to  B-8   (FLAG to PC2)", "beep (0 ohm)"),
-              ("A-1  to  B-1   (ground)", "beep (0 ohm)"), ("A-1 to A-12 to A-A to A-N, same at B", "beep (0 ohm)")]
+    tests = [(f"A-{p}  to  B-{p}  ({n})", "RESISTANCE (2k range): 310 to 350 ohm") for n, p, _ in DATA]
+    tests += [("A-8  to  B-B   (PC2 to FLAG)", "CONTINUITY: beeps"), ("A-B  to  B-8   (FLAG to PC2)", "CONTINUITY: beeps"),
+              ("A-1  to  B-1   (ground)", "CONTINUITY: beeps"), ("A-1 to A-12 to A-A to A-N, same at B", "CONTINUITY: beeps")]
     g.heading("Connections that must be there")
+    c.setFont("Helvetica-Bold", 9)
+    c.setFillColor(GREY)
+    c.drawString(M + 18, g.y + 2, "CHECK")
+    c.drawString(M + 300, g.y + 2, "DMM SETTING: WHAT YOU SHOULD SEE")
+    g.y -= 16
     y = g.y
     for t, want in tests:
         c.setStrokeColor(NAVY)
@@ -578,7 +588,7 @@ def build():
         c.drawString(M + 300, y, want)
         y -= 16
     g.y = y - 8
-    g.heading("Connections that must NOT be there (no beep)")
+    g.heading("Connections that must NOT be there (DMM on CONTINUITY: no beep)")
     no = [
         "Each data pin to its neighbours, at both ends: C-D, D-E, E-F, F-H, H-J, J-K, K-L.",
         "Any data pin to ground (pin A).",
@@ -589,8 +599,10 @@ def build():
         c.setStrokeColor(NAVY)
         c.rect(M, g.y - 2, 10, 10, stroke=1, fill=0)
         g.para(t, x=M + 18, width=W - 2 * M - 18, gap=3)
-    g.note("A data line reads 330 ohm because of its resistor at end A. If one reads 0 ohm, that resistor is "
-           "bridged by solder. If one reads open, the joint or the wire is broken.", color=NAVY, title="Reading the meter")
+    g.note("On RESISTANCE, a data line reads about 330 ohm because of its resistor at end A. Close to 0 ohm means "
+           "that resistor is bridged by solder. OL (or 1 at the left on older meters) means open: a broken joint or wire. "
+           "The continuity beeper can't test the data lines: most beep only below about 50 ohm, so a good 330 ohm "
+           "line stays silent.", color=NAVY, title="Reading the digital multimeter")
 
     # ======== 9. first run ========
     g.new_page("First run", "Page 9")

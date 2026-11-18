@@ -50,7 +50,7 @@ core loses the same share, so the speed-up is unchanged.
 **Build it with the illustrated guide:
 [Build Guide 1: the user-port link cable (PDF)](docs/guides/SC6400-Guide-1-Link-Cable.pdf).** It covers your
 start and end goals, the parts with DigiKey part numbers, how to find pin 1 on your C64, colour-coded wiring
-and solder maps, numbered steps, a meter test checklist, the first run, and troubleshooting. The table below
+and solder maps, numbered steps, a digital-multimeter test checklist, the first run, and troubleshooting. The table below
 is the short version.
 
 
