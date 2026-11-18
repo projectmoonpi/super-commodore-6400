@@ -8,6 +8,8 @@ every core, the leader included, computes its share. The goal is a pack of 8 or 
 a cartridge-port hub and running from one clock. Each machine added should make the whole thing about that much
 faster, and the benchmark shows it on screen.
 
+It is one of the [Project Moon Pi Commodore projects](https://github.com/projectmoonpi/commodore).
+
 **Step 1 (this release): two C64s on a user-port cable.** It has the core kernel, the job protocol, and a
 Mandelbrot benchmark with a live speed-up readout.
 
