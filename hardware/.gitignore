@@ -1,0 +1,6 @@
+**/out/route_work/
+**/out/route.log
+**/out/*.dsn
+**/out/*.ses
+__pycache__/
+*.kicad_prl
