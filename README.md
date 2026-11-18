@@ -37,7 +37,12 @@ core loses the same share, so the speed-up is unchanged.
 
 ## What you need
 
-- 2 NTSC C64s, each with a disk drive (or an SD2IEC / Pi1541 holding `sc6400.d64`).
+- 2 NTSC C64s, each able to load the programs. Any of these works:
+  - a disk drive with `sc6400.d64`, or an SD2IEC / Pi1541;
+  - the `.prg` files on a Kung Fu Flash or other SD cartridge;
+  - the cartridge images: `sc6400-leader.crt` and `sc6400-core.crt`. These are Magic Desk cartridges (32 KB
+    and 16 KB) for a Kung Fu Flash, or burned to a Magic Desk-compatible EPROM cartridge. They start the
+    program at power-on, and the reset button starts it again.
 - A user-port-to-user-port cable (below).
 
 ## The cable
@@ -59,9 +64,9 @@ it, and it stayed at 0), but other software could. The resistors don't slow the 
 
 ## Running it
 
-1. Switch on the worker C64 and load the core: `LOAD"PACK CORE",8` then `RUN`. It shows **CORE: WAITING FOR THE
+1. Switch on the worker C64 and load the core: `LOAD"PACK CORE",8` then `RUN`, or plug in the core cartridge. It shows **CORE: WAITING FOR THE
    LEADER**.
-2. On the leader C64: `LOAD"PACK LEADER",8` then `RUN`. It scans the cable, uploads the job to the core, and
+2. On the leader C64: `LOAD"PACK LEADER",8` then `RUN`, or use the leader cartridge. It scans the cable, uploads the job to the core, and
    shows **CORES 2**. The core's screen changes to **CORE 1: LINKED TO THE LEADER**.
 3. Press **1** to run on the leader alone, then **2** to run on both. Each result shows its time and its
    speed-up over the 1-core run. Press **S** to scan the cable again, for example after switching a core on.
@@ -101,7 +106,8 @@ cycle count.
 
 ## Building and testing
 
-`./build.sh` assembles everything with ACME, writes `build/sc6400.d64`, and runs the test.
+`./build.sh` assembles everything with ACME, writes `build/sc6400.d64` and the two cartridge images
+(`src/cart.asm`, `tools/make_crt.py`), and runs the test.
 
 VICE 3.8 can't connect two C64s through their user ports. So `tools/packsim.c` simulates two C64s joined by
 the cable:
