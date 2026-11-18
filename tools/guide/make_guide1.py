@@ -1009,37 +1009,94 @@ def build(toc_in=None):
     g.para("Use the **digital multimeter** on the cable alone, with nothing plugged in: black lead in **COM**, red "
            "lead in the **V / ohm** socket. Each check below names the setting to use. Tick each line. **Every line must pass "
            "before you plug the cable into a C64.**")
-    tests = [(f"A-{p}  to  B-{p}  ({n})", "RESISTANCE (2k range): 310 to 350 ohm") for n, p, _ in DATA]
-    tests += [("A-8  to  B-B   (PC2 to FLAG)", "CONTINUITY: beeps"), ("A-B  to  B-8   (FLAG to PC2)", "CONTINUITY: beeps"),
-              ("A-1  to  B-1   (ground)", "CONTINUITY: beeps"), ("A-1 to A-12 to A-A to A-N, same at B", "CONTINUITY: beeps")]
-    g.heading("Connections that must be there")
-    c.setFont("Helvetica-Bold", 9)
+    # ---- the key: what "End A, pin C" means ----
+    ky = g.y - 4
+    g.box(M, ky - 128, W - 2 * M, 132, fill=SOFT, stroke=NAVY)
+    c.setFillColor(NAVY)
+    c.setFont("Helvetica-Bold", 10.5)
+    c.drawString(M + 12, ky - 14, "How to read the checks")
+    kx = M + 14
+    for i, (lab, sub) in enumerate((("END A", "tape flag A, 8 resistors"), ("END B", "tape flag B"))):
+        x0 = kx + i * 118
+        c.setFillColor(HexColor("#3a3a3a"))
+        c.roundRect(x0, ky - 62, 64, 30, 3, stroke=0, fill=1)
+        for k in range(6):
+            c.setFillColor(HexColor("#c9a43b"))
+            c.circle(x0 + 8 + k * 10, ky - 41, 3, stroke=0, fill=1)
+            c.setFillColor(HexColor("#c9a43b"))
+            c.circle(x0 + 8 + k * 10, ky - 53, 3, stroke=0, fill=1)
+        c.setFillColor(HexColor("#f2d21b"))
+        c.circle(x0 + 28, ky - 53, 3.6, stroke=0, fill=1)
+        c.setFillColor(NAVY)
+        c.setFont("Helvetica-Bold", 9)
+        c.drawString(x0, ky - 74, lab)
+        c.setFont("Helvetica", 7.5)
+        c.drawString(x0, ky - 84, sub)
+    c.setStrokeColor(HexColor("#888888"))
+    c.setLineWidth(3)
+    c.line(kx + 64, ky - 47, kx + 118, ky - 47)
+    c.setFont("Helvetica", 7.5)
     c.setFillColor(GREY)
-    c.drawString(M + 18, g.y + 2, "CHECK")
-    c.drawString(M + 300, g.y + 2, "DMM SETTING: WHAT YOU SHOULD SEE")
-    g.y -= 16
+    c.drawCentredString(kx + 91, ky - 40, "the cable")
+    c.setFillColor(NAVY)
+    c.drawString(kx + 14, ky - 100, "yellow = pin C (the 3rd contact")
+    c.drawString(kx + 14, ky - 110, "on the bottom row: A, B, C ...)")
+    tx = M + 222
+    g.y = ky - 30
+    g.para("**End A** and **End B** are the two connectors on the cable: the tape flags you put on in step 1.",
+           x=tx - 8, width=W - M - tx - 4, size=9, lead=11.5, gap=2)
+    g.para("**Pin** is the eyelet's number or letter, as on the solder maps (page "
+           f"{g.pg('Solder maps: which wire goes where')}). So **End A, pin C** means: connector A, eyelet C "
+           "(highlighted in yellow).", x=tx - 8, width=W - M - tx - 4, size=9, lead=11.5, gap=2)
+    g.para("Careful: **pin A** is a contact on every connector. **End A** is a cable end.",
+           x=tx - 8, width=W - M - tx - 4, size=9, lead=11.5, gap=0, color=ACCENT)
+    g.y = ky - 144
+
+    tests = [(f"End A, pin {p}", f"End B, pin {p}", f"{n} (data)", "RESISTANCE, 2k range: 310 to 350 ohm")
+             for n, p, _ in DATA]
+    tests += [("End A, pin 8", "End B, pin B", "handshake", "CONTINUITY: beeps"),
+              ("End A, pin B", "End B, pin 8", "handshake", "CONTINUITY: beeps"),
+              ("End A, pin 1", "End B, pin 1", "ground wire", "CONTINUITY: beeps"),
+              ("End A, pin 1", "End A, pins 12, A, N", "ground links", "CONTINUITY: beeps (each)"),
+              ("End B, pin 1", "End B, pins 12, A, N", "ground links", "CONTINUITY: beeps (each)")]
+    g.heading("Connections that must be there")
+    cols = (M + 18, M + 112, M + 222, M + 312)
+    c.setFont("Helvetica-Bold", 8.5)
+    c.setFillColor(GREY)
+    for x0, h in zip(cols, ("BLACK PROBE ON", "RED PROBE ON", "WHAT IT IS", "DMM SETTING: WHAT YOU SHOULD SEE")):
+        c.drawString(x0, g.y + 2, h)
+    g.y -= 15
     y = g.y
-    for t, want in tests:
+    for k, (blk, red, what, want) in enumerate(tests):
+        if k % 2 == 0:
+            c.setFillColor(HexColor("#f5f7fb"))
+            c.rect(M - 4, y - 4, W - 2 * M + 8, 15, stroke=0, fill=1)
         c.setStrokeColor(NAVY)
-        c.rect(M, y - 2, 10, 10, stroke=1, fill=0)
-        c.setFont("Helvetica", 10)
+        c.setLineWidth(0.8)
+        c.rect(M, y - 1, 9, 9, stroke=1, fill=0)
+        c.setFont("Helvetica-Bold", 9.5)
         c.setFillColor(black)
-        c.drawString(M + 18, y, t)
+        c.drawString(cols[0], y, blk)
+        c.drawString(cols[1], y, red)
+        c.setFont("Helvetica", 9.5)
+        c.setFillColor(NAVY)
+        c.drawString(cols[2], y, what)
         c.setFillColor(OK)
-        c.drawString(M + 300, y, want)
-        y -= 16
-    g.y = y - 8
+        c.drawString(cols[3], y, want)
+        y -= 15
+    g.y = y - 10
     g.heading("Connections that must NOT be there (DMM on CONTINUITY: no beep)")
     no = [
-        "Each data pin to its neighbours, at both ends: C-D, D-E, E-F, F-H, H-J, J-K, K-L.",
-        "Any data pin to ground (pin A).",
-        "Pin 8 to pin B at the same end (they must only join across the cable).",
-        "Pins 2, 3, 10 and 11 to anything at all.",
+        "**At each end:** pin C to pin D, D to E, E to F, F to H, H to J, J to K, and K to L (neighbouring data pins).",
+        "**At each end:** any data pin (C to L) to pin A (ground).",
+        "**At each end:** pin 8 to pin B. They must only be joined across the cable (End A, pin 8 to End B, pin B).",
+        "**At each end:** pins 2, 3, 10 and 11 to any other pin.",
     ]
     for t in no:
         c.setStrokeColor(NAVY)
-        c.rect(M, g.y - 2, 10, 10, stroke=1, fill=0)
-        g.para(t, x=M + 18, width=W - 2 * M - 18, gap=3)
+        c.rect(M, g.y - 2, 9, 9, stroke=1, fill=0)
+        g.para(t, x=M + 18, width=W - 2 * M - 18, gap=2, size=10)
+    g.y -= 4
     g.note("On RESISTANCE, a data line reads about 330 ohm because of its resistor at end A. Close to 0 ohm means "
            "that resistor is bridged by solder. OL (or 1 at the left on older meters) means open: a broken joint or wire. "
            "The continuity beeper can't test the data lines: most beep only below about 50 ohm, so a good 330 ohm "
@@ -1080,7 +1137,7 @@ def build(toc_in=None):
          "The core must be running before the leader scans: start PACK CORE, then press S on the leader. Check that "
          f"both ends are on the right way round (paint dots), and redo the tests on page {g.pg('Test before it touches a computer')}."),
         ("The leader freezes while running on 2 cores",
-         f"A handshake wire is broken or swapped. Check A-8 to B-B and A-B to B-8 on page {g.pg('Test before it touches a computer')}. Pin 8 must never go to "
+         f"A handshake wire is broken or swapped. Check End A, pin 8 to End B, pin B, and End A, pin B to End B, pin 8, on page {g.pg('Test before it touches a computer')}. Pin 8 must never go to "
          "pin 8."),
         ("Some tiles in the core's colours are scrambled",
          "A data wire is broken, swapped or bridged. Test C to L again, including the neighbour tests."),
