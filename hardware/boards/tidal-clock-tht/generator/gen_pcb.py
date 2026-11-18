@@ -205,8 +205,8 @@ silk.fixed(board)
 
 pcbnew.SaveBoard(OUT, board)
 sys.path.insert(0, os.path.join(HERE, "..", "..", "common"))
-import stackup                                         # noqa: E402  (green mask = the through-hole edition)
-stackup.apply(OUT, "Green")
+import stackup                                         # noqa: E402  (blue: every Project Moon Pi board renders blue)
+stackup.apply(OUT, "Blue")
 _pro = os.path.splitext(OUT)[0] + ".kicad_pro"
 try:
     _cfg = json.load(open(_pro))

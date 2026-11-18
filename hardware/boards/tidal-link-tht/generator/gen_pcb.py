@@ -179,10 +179,13 @@ for x0, y0, x1, y1 in ((0, 0, W, 0.5), (0, H - 0.5, W, H), (0, 0, 0.5, H), (W - 
 import silk                                            # noqa: E402
 silk.fixed(board)
 
+sys.path.insert(0, os.path.join(HERE, "..", "..", "common"))
+import tli_models                                      # noqa: E402  (plug + socket strips, no VIC)
+tli_models.apply(board)
 pcbnew.SaveBoard(OUT, board)
 sys.path.insert(0, os.path.join(HERE, "..", "..", "common"))
-import stackup                                         # noqa: E402  (green mask = the through-hole edition)
-stackup.apply(OUT, "Green")
+import stackup                                         # noqa: E402  (blue: every Project Moon Pi board renders blue)
+stackup.apply(OUT, "Blue")
 _pro = os.path.splitext(OUT)[0] + ".kicad_pro"
 try:
     _cfg = json.load(open(_pro))

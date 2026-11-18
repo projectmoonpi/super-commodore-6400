@@ -356,7 +356,7 @@ for dx in (-0.6, 0.6):
 print(f"fan-out: {fanned} pads given a via to their plane" + (f", no room at {' '.join(missed)}" if missed else ""))
 
 pcbnew.SaveBoard(OUT, board)
-import stackup                                         # noqa: E402  (common/: blue mask = the SMT edition)
+import stackup                                         # noqa: E402  (blue: every Project Moon Pi board renders blue)
 stackup.apply(OUT, "Blue")
 _pro = os.path.splitext(OUT)[0] + ".kicad_pro"
 try:

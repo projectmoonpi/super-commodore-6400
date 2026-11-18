@@ -1,7 +1,7 @@
 """Write the board's layer stack-up, solder mask colour included, into a .kicad_pcb (replacing any already there).
-The mask colour is what the renders show and what the shop is asked for: blue = the SMT editions, green = the
-through-hole editions, so the two can never be mixed up on the bench.
-    python3 stackup.py board.kicad_pcb Blue|Green
+The mask colour is what the renders show: every Project Moon Pi board renders BLUE (the user's standing rule,
+2026-11-18). The silkscreen says which edition a board is (SMT / THT).
+    python3 stackup.py board.kicad_pcb Blue
 Plain Python (no KiCad needed): it edits the file's text."""
 import re
 import sys

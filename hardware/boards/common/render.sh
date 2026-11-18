@@ -1,5 +1,5 @@
 #!/bin/bash
-# Board renders for the README and guides, in the board's own solder mask colour (blue SMT, green through-hole).
+# Board renders for the README and guides, in the board's stack-up colour: always blue (common/stackup.py).
 #   bash render.sh <board.kicad_pcb> <out-name-without-.png> [width height zoom] [top|bottom|both]
 set -e
 K=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
