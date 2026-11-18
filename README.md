@@ -153,6 +153,9 @@ The leader's picture from VICE matches the simulator's byte for byte.
 - **VICE** emulator and `c1541`. The VICE team (GPL).
 - **Python and Pillow.** Their authors (PSF / HPND licences).
 - **Palette values.** The "colodore" C64 palette by Philip "Pepto" Timmermann.
+- **B612 typeface** (the build guide's cover). Airbus and Intactile Design (SIL Open Font License 1.1, see
+  `tools/guide/fonts/OFL.txt`).
+- **ReportLab** (the build guide). ReportLab Inc. (BSD).
 - **Quarter-square multiplication.** A classic 6502 technique, as documented on codebase64.org.
 - **User port pinout and CIA behaviour.** The *Commodore 64 Programmer's Reference Guide* and the MOS 6526
   datasheet.

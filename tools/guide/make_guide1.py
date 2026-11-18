@@ -9,11 +9,21 @@ from pathlib import Path
 from reportlab.lib.colors import HexColor, black, white
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.utils import ImageReader
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "docs" / "guides" / "SC6400-Guide-1-Link-Cable.pdf"
 LOGO = ROOT / "docs" / "img" / "project-moon-pi-logo.png"
+PATCH = ROOT / "docs" / "img" / "project-moon-pi-patch.png"     # the same badge, transparent background
+FONTS = Path(__file__).resolve().parent / "fonts"
+pdfmetrics.registerFont(TTFont("B612", str(FONTS / "B612-Regular.ttf")))
+pdfmetrics.registerFont(TTFont("B612-Bold", str(FONTS / "B612-Bold.ttf")))
+C64_BORDER = HexColor("#6c5eb5")            # the C64's start-up screen: light blue frame ...
+C64_SCREEN = HexColor("#352879")            # ... dark blue screen ...
+C64_TEXT = HexColor("#a59cf0")              # ... light blue capitals
+STRIPES = ["#ffffff", "#b8bcc4", "#dd1d18"]   # the Project Moon Pi patch: white, silver, red
 IMG = ROOT / "docs" / "img"
 
 W, H = letter
@@ -44,7 +54,9 @@ NEVER = {"2", "3", "10", "11"}
 
 
 class Guide:
-    def __init__(self):
+    def __init__(self, toc_in=None):
+        self.toc_in = toc_in or []              # (title, page, key) from the first pass
+        self.toc = []
         OUT.parent.mkdir(parents=True, exist_ok=True)
         self.c = canvas.Canvas(str(OUT), pagesize=letter)
         self.c.setTitle("Super Commodore 6400 - Build Guide 1: the user-port link cable")
@@ -52,13 +64,22 @@ class Guide:
         self.page = 0
 
     # ---- page furniture -------------------------------------------------------------------
-    def new_page(self, title, step=None):
+    def pg(self, title):
+        """The page a section is on (from the first pass; '?' on the first pass)."""
+        return next((str(pg) for t, pg, _ in self.toc_in if t == title), "?")
+
+    def new_page(self, title, step=None, toc=True):
         if self.page:
             if self.page > 1:                   # (no footer on the cover)
                 self.footer()
             self.c.showPage()
         self.page += 1
         c = self.c
+        key = f"p{self.page}"
+        c.bookmarkPage(key)
+        c.addOutlineEntry(title, key, 0)
+        if toc:
+            self.toc.append((title, self.page, key))
         c.setFillColor(NAVY)
         c.rect(0, H - 64, W, 64, stroke=0, fill=1)
         c.setFillColor(white)
@@ -530,42 +551,129 @@ def draw_schematic(g, top):
     c.drawString(W - M - 244, tb_y + 9, "Rev 0.1   Sheet 1/1   Project Moon Pi")
     return tb_y - 10
 
-def build():
-    g = Guide()
+def spaced(c, x, y, text, font, size, color, space=1.2, anchor="left"):
+    """Capitals with a little letter spacing, like the C64's own lettering."""
+    w = pdfmetrics.stringWidth(text, font, size) + space * max(0, len(text) - 1)
+    x = x - w / 2 if anchor == "center" else x - w if anchor == "right" else x
+    t = c.beginText(x, y)
+    t.setFont(font, size)
+    t.setCharSpace(space)
+    t.setFillColor(color)
+    t.textOut(text)
+    t.setCharSpace(0)
+    c.drawText(t)
+
+
+def stripes(c, x0, y0, x1, y1, width):
+    """The Project Moon Pi stripes, side by side, along the line (x0, y0) -> (x1, y1)."""
+    import math
+    dx, dy = x1 - x0, y1 - y0
+    ln = math.hypot(dx, dy)
+    nx, ny = -dy / ln, dx / ln
+    n = len(STRIPES)
+    for k, col in enumerate(STRIPES):
+        o = (k - (n - 1) / 2) * width
+        p = c.beginPath()
+        p.moveTo(x0 + nx * (o - width / 2), y0 + ny * (o - width / 2))
+        p.lineTo(x1 + nx * (o - width / 2), y1 + ny * (o - width / 2))
+        p.lineTo(x1 + nx * (o + width / 2), y1 + ny * (o + width / 2))
+        p.lineTo(x0 + nx * (o + width / 2), y0 + ny * (o + width / 2))
+        p.close()
+        c.setFillColor(HexColor(col))
+        c.drawPath(p, stroke=0, fill=1)
+
+
+def cover(g):
+    """A Commodore 64 start-up screen that says SC6400, the Moon Pi stripes, the patch (as on the M.O.S.S. guides)."""
+    c = g.c
+    g.page = 1
+    c.bookmarkPage("p1")
+    c.addOutlineEntry("Cover", "p1", 0)
+    inch = 72
+    c.setFillColor(C64_BORDER)
+    c.rect(0, 0, W, H, stroke=0, fill=1)
+    sx, sw, sh = 0.6 * inch, W - 1.2 * inch, 5.5 * inch
+    sy = H - 0.6 * inch - sh
+    c.setFillColor(C64_SCREEN)
+    c.roundRect(sx, sy, sw, sh, 18, stroke=0, fill=1)
+    top = sy + sh
+    spaced(c, W / 2, top - 0.55 * inch, "**** SUPER COMMODORE 6400 V0.1 ****", "B612-Bold", 14, C64_TEXT, 2, "center")
+    spaced(c, W / 2, top - 0.86 * inch, "2 CORES   128K RAM SYSTEM   NTSC", "B612", 9, C64_TEXT, 1.2, "center")
+    spaced(c, W / 2, top - 2.5 * inch, "SC6400", "B612-Bold", 74, C64_TEXT, 3.5, "center")
+    spaced(c, W / 2, top - 3.0 * inch, "SUPER COMMODORE 6400", "B612-Bold", 14, C64_TEXT, 2.4, "center")
+    spaced(c, W / 2, top - 3.28 * inch, "MANY COMMODORE 64S. ONE MACHINE.", "B612-Bold", 11, C64_TEXT, 1.8, "center")
+    spaced(c, sx + 0.4 * inch, sy + 0.8 * inch, "READY.", "B612-Bold", 13, C64_TEXT, 2)
+    c.setFillColor(C64_TEXT)
+    c.rect(sx + 0.4 * inch, sy + 0.42 * inch, 9, 13, stroke=0, fill=1)
+    # the stripes rising across, and the patch breaking out of the screen
+    stripes(c, -10, 2.55 * inch, W + 10, 5.35 * inch, 0.2 * inch)
+    s = 2.7 * inch
+    c.drawImage(ImageReader(str(PATCH)), W - 0.45 * inch - s, sy - 1.2 * inch, s, s, mask="auto")
+    # the title, in the frame under the screen
+    tx = 0.65 * inch
+    spaced(c, tx, 2.05 * inch, "BUILD GUIDE 1", "B612-Bold", 24, white, 2.4)
+    spaced(c, tx, 1.62 * inch, "THE USER-PORT LINK CABLE", "B612-Bold", 24, white, 2.4)
+    spaced(c, tx, 1.25 * inch, "FOR TWO NTSC COMMODORE 64S", "B612", 11, white, 1.6)
+    spaced(c, tx, 0.55 * inch, "REVISION 0.1   FOR SOFTWARE 0.1.0", "B612", 8, HexColor("#e2defc"), 1.1)
+    spaced(c, W - 0.65 * inch, 0.55 * inch, "DESIGNED AND CREATED BY PROJECT MOON PI", "B612-Bold", 8,
+           HexColor("#e2defc"), 1.1, "right")
+
+
+GROUPS = [("Plan", ["Your goals", "What you are building", "Parts and tools"]),
+          ("Learn the wiring", ["Know the user port", "The wiring diagram", "Schematic",
+                                "Solder maps: which wire goes where"]),
+          ("Build and test", ["Build it, step by step", "Test before it touches a computer"]),
+          ("Use it", ["First run", "If something is wrong"]),
+          ("", ["Credits"])]
+
+
+def contents(g):
+    """Page 2: the contents, grouped, each line a link (filled in from the first pass)."""
+    c = g.c
+    g.new_page("Contents", toc=False)
+    pages = {t: (pg, key) for t, pg, key in g.toc_in}
+    y = g.y - 10
+    for gi, (group, titles) in enumerate(GROUPS):
+        if group:
+            c.setFillColor(ACCENT)
+            c.setFont("Helvetica-Bold", 9)
+            c.drawString(M, y, f"PART {gi + 1}")
+            c.setFillColor(NAVY)
+            c.setFont("Helvetica-Bold", 15)
+            c.drawString(M + 52, y - 1, group)
+            y -= 26
+        for t in titles:
+            pg, key = pages.get(t, ("?", None))
+            c.setFont("Helvetica", 12)
+            c.setFillColor(black)
+            c.drawString(M + 52, y, t)
+            tw = c.stringWidth(t, "Helvetica", 12)
+            c.setFillColor(GREY)
+            c.setFont("Helvetica", 12)
+            dots_x = M + 52 + tw + 6
+            while dots_x < W - M - 30:
+                c.drawString(dots_x, y, ".")
+                dots_x += 6
+            c.setFillColor(NAVY)
+            c.setFont("Helvetica-Bold", 12)
+            c.drawRightString(W - M, y, str(pg))
+            if key:
+                c.linkAbsolute(t, key, (M + 48, y - 4, W - M, y + 13), thickness=0)
+            y -= 22
+        y -= 14
+    g.y = y
+    g.note("Start with **Your goals**. Then read **Know the user port** and the **Wiring diagram** before you "
+           "pick up the soldering iron, and do **every** test in **Test before it touches a computer**. In the PDF, "
+           "each line above is a link.", color=NAVY, title="How to use this guide")
+
+
+def build(toc_in=None):
+    g = Guide(toc_in)
     c = g.c
 
-    # ======== 1. cover ========
-    g.page = 1
-    c.setFillColor(black)
-    c.rect(0, 0, W, H, stroke=0, fill=1)
-    c.drawImage(ImageReader(str(LOGO)), W / 2 - 110, H - 300, 220, 220, mask="auto")
-    c.setFillColor(white)
-    c.setFont("Helvetica-Bold", 30)
-    c.drawCentredString(W / 2, H - 350, "SUPER COMMODORE 6400")
-    c.setFont("Helvetica", 16)
-    c.drawCentredString(W / 2, H - 380, "Build Guide 1")
-    c.setFont("Helvetica-Bold", 22)
-    c.drawCentredString(W / 2, H - 420, "The User-Port Link Cable")
-    c.setFont("Helvetica", 12.5)
-    c.drawCentredString(W / 2, H - 448, "Two Commodore 64s, one cable, twice the computing power")
-    # a little picture of the result
-    for i, (x0, col) in enumerate(((W / 2 - 190, "#2f62d0"), (W / 2 + 40, "#d22b2b"))):
-        c.setFillColor(HexColor("#233366"))
-        c.roundRect(x0, 150, 150, 92, 8, stroke=0, fill=1)
-        c.setFillColor(HexColor(col))
-        c.rect(x0 + 14, 170, 122, 56, stroke=0, fill=1)
-        c.setFillColor(white)
-        c.setFont("Helvetica-Bold", 10)
-        c.drawCentredString(x0 + 75, 132, "LEADER (core 0)" if i == 0 else "CORE 1")
-    c.setStrokeColor(HexColor("#f2d21b"))
-    c.setLineWidth(4)
-    c.bezier(W / 2 - 40, 196, W / 2 - 10, 230, W / 2 + 10, 160, W / 2 + 40, 196)
-    c.setFillColor(HexColor("#aab6d6"))
-    c.setFont("Helvetica", 10)
-    c.drawCentredString(W / 2, 92, "Version 0.1  -  for software release 0.1.0  -  NTSC Commodore 64")
-    c.setFillColor(white)
-    c.setFont("Helvetica-Bold", 12)
-    c.drawCentredString(W / 2, 64, "Designed and Created by Project Moon Pi")
+    # ======== 1. cover, 2. contents ========
+    cover(g)
+    contents(g)
 
     # ======== 2. goals ========
     g.new_page("Your goals", "Start here")
@@ -574,7 +682,7 @@ def build():
         "**Two NTSC Commodore 64s** that work, any board revision, each with a power supply and a monitor or TV.",
         "**A way to load programs on each one:** a 1541 or SD2IEC with the disk sc6400.d64, a Kung Fu Flash with "
         "the .prg or .crt files, or the cartridge images burned to EPROM cartridges.",
-        "**The parts on page 4.** About $25 for the cable, plus tools you probably already have.",
+        f"**The parts on page {g.pg('Parts and tools')}.** About $25 for the cable, plus tools you probably already have.",
     ])
     g.heading("Where you finish")
     g.bullets([
@@ -676,7 +784,7 @@ def build():
         "clamp meter for this build.",
         "Masking tape and a pen, to label the ends A and B.",
     ])
-    g.note("The connectors have no key, so they can go on upside down. That's why page 5 shows you how to find "
+    g.note(f"The connectors have no key, so they can go on upside down. That's why page {g.pg('Know the user port')} shows you how to find "
            "pin 1 on your C64 with the digital multimeter, and why you mark pin 1 on each connector before soldering.",
            color=NAVY, title="Why the paint pen and the digital multimeter matter")
 
@@ -847,7 +955,7 @@ def build():
          "the free leads to 8 mm. Slide a 2 cm piece of 1/8\" heat-shrink onto each data wire, solder the wire to the "
          "free lead (brown to C's resistor, red to D's, and so on), then shrink the tubing over the joint."),
         ("End A: handshake and ground",
-         "Solder **white to pin 8**, and **the 2nd brown to pin B**. Add the ground links (page 8), then solder black "
+         f"Solder **white to pin 8**, and **the 2nd brown to pin B**. Add the ground links (page {g.pg('Solder maps: which wire goes where')}), then solder black "
          "to pin A."),
         ("End B",
          "The same, but **without resistors**: the data wires go straight onto C to L. Here **the 2nd brown goes to "
@@ -970,9 +1078,9 @@ def build():
     trouble = [
         ("The leader shows CORES 1",
          "The core must be running before the leader scans: start PACK CORE, then press S on the leader. Check that "
-         "both ends are on the right way round (paint dots), and redo the tests on page 10."),
+         f"both ends are on the right way round (paint dots), and redo the tests on page {g.pg('Test before it touches a computer')}."),
         ("The leader freezes while running on 2 cores",
-         "A handshake wire is broken or swapped. Check A-8 to B-B and A-B to B-8 on page 10. Pin 8 must never go to "
+         f"A handshake wire is broken or swapped. Check A-8 to B-B and A-B to B-8 on page {g.pg('Test before it touches a computer')}. Pin 8 must never go to "
          "pin 8."),
         ("Some tiles in the core's colours are scrambled",
          "A data wire is broken, swapped or bridged. Test C to L again, including the neighbour tests."),
@@ -988,21 +1096,33 @@ def build():
         c.drawString(M, g.y, t)
         g.y -= 15
         g.para(body, x=M + 12, width=W - 2 * M - 12, size=10.2, lead=13.5)
-    g.y -= 6
-    g.heading("Credits")
-    g.para("Design, software, guide and the Project Moon Pi logo: Project Moon Pi. User port pinout and CIA 6526 "
-           "behaviour: the Commodore 64 Programmer's Reference Guide and the MOS 6526 datasheet. Part data: "
-           "DigiKey. Diagrams drawn with ReportLab (BSD licence). Emulator screenshots: VICE (GPL). Commodore 64 "
-           "is a trademark of its owners; Project Moon Pi is not affiliated with them. Built with Claude Code "
-           "(Anthropic).", size=9.5, lead=12.5)
-    c.drawImage(ImageReader(str(LOGO)), W / 2 - 40, 60, 80, 80, mask="auto")
-    c.setFont("Helvetica-Bold", 10)
+
+    # ======== credits ========
+    g.new_page("Credits")
+    g.para("This guide and the Super Commodore 6400 stand on the work of many people. Thank you.")
+    g.bullets([
+        "**Design, software, this guide and the Project Moon Pi logo:** Project Moon Pi.",
+        "**User port pinout and CIA 6526 behaviour:** the Commodore 64 Programmer's Reference Guide (Commodore) and "
+        "the MOS 6526 CIA datasheet.",
+        "**Part numbers, stock and prices:** DigiKey.",
+        "**B612 typeface** (the cover): Airbus and Intactile Design, SIL Open Font License 1.1.",
+        "**Diagrams and layout:** drawn with ReportLab (ReportLab Inc., BSD licence).",
+        "**Emulator screenshots:** VICE, the Versatile Commodore Emulator (the VICE team, GPL).",
+        "**Screenshots of two linked machines:** packsim, the project's own two-machine simulator.",
+        "**Palette:** the \"colodore\" C64 palette by Philip \"Pepto\" Timmermann.",
+        "Commodore 64 is a trademark of its owners. Project Moon Pi is not affiliated with them.",
+        "Built with Claude Code (Anthropic).",
+    ])
+    c.drawImage(ImageReader(str(PATCH)), W / 2 - 80, 120, 160, 160, mask="auto")
+    c.setFont("Helvetica-Bold", 13)
     c.setFillColor(NAVY)
-    c.drawCentredString(W / 2, 48, "Designed and Created by Project Moon Pi")
+    c.drawCentredString(W / 2, 96, "Designed and Created by Project Moon Pi")
     g.footer()
     c.save()
-    print(f"wrote {OUT} ({g.page} pages)")
+    return g
 
 
 if __name__ == "__main__":
-    build()
+    first = build()                             # pass 1: find out which page each section lands on
+    g = build(first.toc)                        # pass 2: the contents page shows them
+    print(f"wrote {OUT} ({g.page} pages)")
