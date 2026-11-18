@@ -60,7 +60,7 @@ def C(val, a, b, grp, desc=""):
         part(r, "Device:C_Polarized", val, FP_CP, {1: a, 2: b}, grp, desc + " (25 V electrolytic: + to the long lead)",
              "KEMET", "ESK106M025AC3AA")
     else:
-        part(r, "Device:C", val, FP_C, {1: a, 2: b}, grp, desc, "KEMET", "C320C104K5R5TA")
+        part(r, "Device:C", val, FP_C, {1: a, 2: b}, grp, desc, "TDK", "FG18X7R1H104KNT06")
     return r
 
 

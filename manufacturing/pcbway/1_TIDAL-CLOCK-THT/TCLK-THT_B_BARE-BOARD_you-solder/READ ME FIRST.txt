@@ -1,0 +1,20 @@
+TCLK-THT  -  Tidal (C)lock, through-hole edition, rev 0.1 (the master clock, 4 ports)
+BARE BOARD ONLY: PCBWay makes the board; you solder the parts
+==============================================================================
+
+Upload to PCBWay (standard PCB quote, no assembly):
+  Gerber file:      TCLK-THT_GERBERS_2026-11-18.zip
+
+Order form (2 layers, no layer pop-up):
+  Board size:       100.1 x 93.1 mm
+  2 layers, 1.6 mm FR-4, 1 oz copper both sides
+  Solder mask BLUE, silkscreen WHITE (both sides)
+  Surface finish: HASL lead-free
+  Min track/space 0.15/0.2 mm, min drill 0.3 mm (vias 0.6 mm)
+  Vias tented, not filled (no via-in-pad). No fine-pitch parts: 2.54 mm pitch throughout, no mask-bridge concerns
+
+
+Gerber zip holds: TCLK-B_Cu.gbl, TCLK-B_Mask.gbs, TCLK-B_Silkscreen.gbo, TCLK-Edge_Cuts.gm1, TCLK-F_Cu.gtl, TCLK-F_Mask.gts, TCLK-F_Silkscreen.gto, TCLK-NPTH-drl_map.gbr, TCLK-NPTH.drl, TCLK-PTH-drl_map.gbr, TCLK-PTH.drl, TCLK-job.gbrjob
+
+Built 2026-11-18 by hardware/boards/common/pcbway_package.py
+Designed and Created by Project Moon Pi

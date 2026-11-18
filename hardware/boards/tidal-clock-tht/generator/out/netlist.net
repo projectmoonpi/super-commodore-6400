@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/Users/ricsne/CLAUDE CODE PROJECTS/super-commodore-6400/hardware/boards/tidal-clock-tht/generator/out/tidal-clock-tht.kicad_sch")
-		(date "2026-11-18T06:02:49")
+		(date "2026-11-18T06:35:55")
 		(tool "Eeschema 10.0.7")
 		(sheet
 			(number "1")
@@ -241,9 +241,9 @@
 			(description "Si5351 board supply")
 			(fields
 				(field
-					(name "Manufacturer") "KEMET")
+					(name "Manufacturer") "TDK")
 				(field
-					(name "MPN") "C320C104K5R5TA")
+					(name "MPN") "FG18X7R1H104KNT06")
 				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm")
 				(field
@@ -259,11 +259,11 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "KEMET")
+				(value "TDK")
 			)
 			(property
 				(name "MPN")
-				(value "C320C104K5R5TA")
+				(value "FG18X7R1H104KNT06")
 			)
 			(property
 				(name "Sheetname")
@@ -373,9 +373,9 @@
 			(description "U2 decoupling")
 			(fields
 				(field
-					(name "Manufacturer") "KEMET")
+					(name "Manufacturer") "TDK")
 				(field
-					(name "MPN") "C320C104K5R5TA")
+					(name "MPN") "FG18X7R1H104KNT06")
 				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm")
 				(field
@@ -391,11 +391,11 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "KEMET")
+				(value "TDK")
 			)
 			(property
 				(name "MPN")
-				(value "C320C104K5R5TA")
+				(value "FG18X7R1H104KNT06")
 			)
 			(property
 				(name "Sheetname")
@@ -439,9 +439,9 @@
 			(description "U3 decoupling")
 			(fields
 				(field
-					(name "Manufacturer") "KEMET")
+					(name "Manufacturer") "TDK")
 				(field
-					(name "MPN") "C320C104K5R5TA")
+					(name "MPN") "FG18X7R1H104KNT06")
 				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm")
 				(field
@@ -457,11 +457,11 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "KEMET")
+				(value "TDK")
 			)
 			(property
 				(name "MPN")
-				(value "C320C104K5R5TA")
+				(value "FG18X7R1H104KNT06")
 			)
 			(property
 				(name "Sheetname")
@@ -505,9 +505,9 @@
 			(description "U4 decoupling")
 			(fields
 				(field
-					(name "Manufacturer") "KEMET")
+					(name "Manufacturer") "TDK")
 				(field
-					(name "MPN") "C320C104K5R5TA")
+					(name "MPN") "FG18X7R1H104KNT06")
 				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm")
 				(field
@@ -523,11 +523,11 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "KEMET")
+				(value "TDK")
 			)
 			(property
 				(name "MPN")
-				(value "C320C104K5R5TA")
+				(value "FG18X7R1H104KNT06")
 			)
 			(property
 				(name "Sheetname")
@@ -571,9 +571,9 @@
 			(description "U5 decoupling")
 			(fields
 				(field
-					(name "Manufacturer") "KEMET")
+					(name "Manufacturer") "TDK")
 				(field
-					(name "MPN") "C320C104K5R5TA")
+					(name "MPN") "FG18X7R1H104KNT06")
 				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm")
 				(field
@@ -589,11 +589,11 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "KEMET")
+				(value "TDK")
 			)
 			(property
 				(name "MPN")
-				(value "C320C104K5R5TA")
+				(value "FG18X7R1H104KNT06")
 			)
 			(property
 				(name "Sheetname")
@@ -637,9 +637,9 @@
 			(description "U6 decoupling")
 			(fields
 				(field
-					(name "Manufacturer") "KEMET")
+					(name "Manufacturer") "TDK")
 				(field
-					(name "MPN") "C320C104K5R5TA")
+					(name "MPN") "FG18X7R1H104KNT06")
 				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm")
 				(field
@@ -655,11 +655,11 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "KEMET")
+				(value "TDK")
 			)
 			(property
 				(name "MPN")
-				(value "C320C104K5R5TA")
+				(value "FG18X7R1H104KNT06")
 			)
 			(property
 				(name "Sheetname")
@@ -3437,10 +3437,10 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "43ef9a69-5786-4976-a320-0a63feac888b" "fe90997a-1be4-416b-a991-b265fc012f33"
-				"42b577e5-4337-4529-abcd-56a5ba5b14b8" "b37a0eb1-5b84-4a2d-a294-bed708265eda"
-				"abaa26ea-e202-4784-a567-849ca4fcfdea" "799f9b6c-95dc-45cf-980e-7abefe246afc"
-				"303c6239-3275-4071-8ed1-621fe8e12ba3"
+			(tstamps "60b4f724-341c-4e03-91a6-b801d601d4e2" "ee01679c-6111-4295-bed3-781cb1d6288d"
+				"64e07cb6-1978-4c11-b53b-53984ba856a4" "e0c7f265-f7e6-4438-bffb-aade966cd1cd"
+				"303c6239-3275-4071-8ed1-621fe8e12ba3" "ba28d95e-d2ff-49e2-899d-a19fa4d05b96"
+				"2421963b-9f85-4829-a7ae-28254980f75f"
 			)
 			(units
 				(unit
@@ -3573,8 +3573,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f0462b5e-0438-481b-a7d9-b1523dd5793a" "5c571398-babf-4b31-a414-a6a0a8784ad8"
-				"00b7687b-93fd-48e1-8d48-9f2c552c6042"
+			(tstamps "f0462b5e-0438-481b-a7d9-b1523dd5793a" "b9df5e40-ad1c-4efe-b92e-f8943f591595"
+				"97c46e4d-3958-493d-aa6b-b16f819a11a8"
 			)
 			(units
 				(unit
@@ -3687,8 +3687,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9dad1137-30ee-4438-95dd-e63ccc033885" "fb6abec3-dd45-4e79-891b-963f76f92d09"
-				"0edd1a1b-143a-46d9-99ae-07720167ee5b"
+			(tstamps "f310556f-727c-4fa9-83d3-ca3b0d3b7d2b" "fb6abec3-dd45-4e79-891b-963f76f92d09"
+				"c197afdd-d981-4b76-985f-ebc58cbf10c3"
 			)
 			(units
 				(unit
@@ -3801,9 +3801,9 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3e9a11db-2a13-4054-8609-bc89d3c48c9a" "1975d2d1-7fa0-41fa-b0a2-6a2cc6b7daef"
-				"16af58c3-9390-4426-a11c-22616e0b9320" "d0be4f68-87c0-46d0-909b-4b0c94bdf4dd"
-				"05a5bf19-4d1e-4b9a-bb1e-272df992a995"
+			(tstamps "e8eef5c5-5df9-4906-b2a1-dd803c92ce36" "89f0279c-de5d-4afd-bfd4-64a5d1f97763"
+				"7b8df493-5018-4f08-afc5-cf17a7eb6fda" "251b6460-0427-44a3-92bf-cc42722cd0be"
+				"1975d2d1-7fa0-41fa-b0a2-6a2cc6b7daef"
 			)
 			(units
 				(unit
@@ -3926,8 +3926,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bac26815-a656-41c9-a852-941d43b4874f" "c8de2bfd-bcb4-4a13-a836-dce0ff109219"
-				"94ebc5db-5a89-497a-a82f-66417c611d1b" "6b914e2e-2596-4237-9958-0d9dddd17ba9"
+			(tstamps "bfca198d-401b-4297-8d01-bce4d77f9265" "f2c5138e-4330-448d-b9db-6e106f3370a8"
+				"d62acef6-4150-47d3-aadf-3a58e4be6910" "e3e9f290-43c1-4333-b9e5-02fbac3d27e0"
 				"323ba753-cd2d-4817-ab95-b11ac03dd96a"
 			)
 			(units

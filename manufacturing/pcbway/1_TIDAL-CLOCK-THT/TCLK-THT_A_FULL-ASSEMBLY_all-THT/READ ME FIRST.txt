@@ -1,0 +1,26 @@
+TCLK-THT  -  Tidal (C)lock, through-hole edition, rev 0.1 (the master clock, 4 ports)
+FULL ASSEMBLY: PCBWay makes the board and solders every part
+==============================================================================
+
+Upload to PCBWay (PCB Assembly quote, THROUGH-HOLE assembly):
+  Gerber file:      TCLK-THT_GERBERS_2026-11-18.zip
+  BOM:              TCLK-THT_BOM_FULL-ASSEMBLY.xlsx
+  Centroid / CPL:   TCLK-THT_CPL_FULL-ASSEMBLY.xlsx
+
+Order form (2 layers, no layer pop-up):
+  Board size:       100.1 x 93.1 mm
+  2 layers, 1.6 mm FR-4, 1 oz copper both sides
+  Solder mask BLUE, silkscreen WHITE (both sides)
+  Surface finish: HASL lead-free
+  Min track/space 0.15/0.2 mm, min drill 0.3 mm (vias 0.6 mm)
+  Vias tented, not filled (no via-in-pad). No fine-pitch parts: 2.54 mm pitch throughout, no mask-bridge concerns
+  Assembly:         top side only, 0 SMD parts, 56 through-hole parts (19 BOM lines)
+  NOT for PCBWay:   Raspberry Pi SC0917 (Raspberry Pi Pico H (headers fitted)); Adafruit 2045 (Adafruit Si5351A clock generator board (header fitted, pins down)): they plug into the sockets PCBWay fits. Buy them yourself (DigiKey list).
+
+
+Placement file: mm from the board's bottom-left corner (the same origin as the Gerbers and drill files), Y up.
+
+Gerber zip holds: TCLK-B_Cu.gbl, TCLK-B_Mask.gbs, TCLK-B_Silkscreen.gbo, TCLK-Edge_Cuts.gm1, TCLK-F_Cu.gtl, TCLK-F_Mask.gts, TCLK-F_Silkscreen.gto, TCLK-NPTH-drl_map.gbr, TCLK-NPTH.drl, TCLK-PTH-drl_map.gbr, TCLK-PTH.drl, TCLK-job.gbrjob
+
+Built 2026-11-18 by hardware/boards/common/pcbway_package.py
+Designed and Created by Project Moon Pi

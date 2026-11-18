@@ -76,7 +76,7 @@ part("R4", "Device:R", "100k", FP_R, {1: "EXT_DOT", 2: "GND"}, "clock", "holds t
      "Yageo", "MFR-25FRF52-100K")
 part("R5", "Device:R", "100k", FP_R, {1: "EXT_COLOR", 2: "GND"}, "clock", "holds the input low with no cable",
      "Yageo", "MFR-25FRF52-100K")
-part("C1", "Device:C", "100nF", FP_C, {1: "+5V", 2: "GND"}, "clock", "decoupling", "KEMET", "C320C104K5R5TA")
+part("C1", "Device:C", "100nF", FP_C, {1: "+5V", 2: "GND"}, "clock", "decoupling", "TDK", "FG18X7R1H104KNT06")
 part("C2", "Device:C_Polarized", "10uF", FP_CP, {1: "+5V", 2: "GND"}, "clock",
      "bulk decoupling (25 V electrolytic: + to the long lead)", "KEMET", "ESK106M025AC3AA")
 

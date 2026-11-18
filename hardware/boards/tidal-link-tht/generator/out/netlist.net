@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/Users/ricsne/CLAUDE CODE PROJECTS/super-commodore-6400/hardware/boards/tidal-link-tht/generator/out/tidal-link-tht.kicad_sch")
-		(date "2026-11-18T06:12:39")
+		(date "2026-11-18T06:36:15")
 		(tool "Eeschema 10.0.7")
 		(sheet
 			(number "1")
@@ -61,9 +61,9 @@
 			(description "decoupling")
 			(fields
 				(field
-					(name "Manufacturer") "KEMET")
+					(name "Manufacturer") "TDK")
 				(field
-					(name "MPN") "C320C104K5R5TA")
+					(name "MPN") "FG18X7R1H104KNT06")
 				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm")
 				(field
@@ -79,11 +79,11 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "KEMET")
+				(value "TDK")
 			)
 			(property
 				(name "MPN")
-				(value "C320C104K5R5TA")
+				(value "FG18X7R1H104KNT06")
 			)
 			(property
 				(name "Sheetname")
@@ -1005,7 +1005,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a96b0ca2-6409-4782-a83c-32081c559e0f" "87e55111-4706-4aab-8511-0a5766db6f3d")
+			(tstamps "a96b0ca2-6409-4782-a83c-32081c559e0f" "2bb40ece-a30e-40ee-a021-20fc6913d897")
 			(units
 				(unit
 					(name "A")
@@ -1403,10 +1403,10 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d1e39f52-b906-4082-a0ba-5408e1ff5e91" "4acf4d24-590a-4b5a-b6e9-f3921f8ca67a"
-				"3f272a41-5cfe-49b9-9fb5-11ec669d5d9d" "451aa960-d72f-44b7-adde-7f073c155f7b"
-				"af636fb7-b6d0-43db-9788-c86e6fddce62" "225bacf7-6df5-4988-b0f0-0dce43a343b2"
-				"190856ac-ce07-4863-b5f3-b8da56185f6b"
+			(tstamps "775d3646-f74b-4272-a328-2b7f91d17e14" "4df5aa81-65b1-44f8-9b85-1c50abeeb51d"
+				"7f7ef14b-d61c-4152-a8a9-b4fac6b51576" "4b4be386-b0f0-4c3d-9a87-4179967432ad"
+				"6d88ff9d-eaaa-40db-9250-74cdcea2ba80" "e4344def-5c3a-4c2c-b620-d7a305f41fce"
+				"451aa960-d72f-44b7-adde-7f073c155f7b"
 			)
 			(units
 				(unit
