@@ -8,7 +8,7 @@ package script). Every part on these boards is through-hole, so the two versions
     B_BARE-BOARD_you-solder   PCBWay makes the bare board only; every part comes from DigiKey and you solder it.
 
 The Gerbers are the same for both versions; each folder carries its own copy so it is complete on its own.
-Also writes manufacturing/bom/TA6400-THT-bench-set_DigiKey.xlsx + .csv (1 Tidal (C)lock + 2 TLIs + 2 clock cables),
+Also writes hardware/ORDER - parts (DigiKey)/TA6400-THT-bench-set_DigiKey.xlsx + .csv (1 Tidal (C)lock + 2 TLIs + 2 clock cables),
 with DigiKey's own part numbers and live stock (moss-dash's DigiKey connector).
 
     python3 hardware/boards/common/pcbway_package.py          (from the project root; needs openpyxl)
@@ -33,8 +33,12 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..")
 HERE = os.path.dirname(os.path.abspath(__file__))
 KC = "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli"
 KPY = "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3"
-OUT = os.path.join(ROOT, "manufacturing", "pcbway")
-BOMDIR = os.path.join(ROOT, "manufacturing", "bom")
+ORDER = "ORDER - PCBWay"      # each board's order files go in its own folder: hardware/boards/<board>/ORDER - PCBWay/
+BOMDIR = os.path.join(ROOT, "hardware", "ORDER - parts (DigiKey)")
+
+
+def order_dir(board):
+    return os.path.join(ROOT, *board["rel"].split("/")[:3], ORDER)
 DIGIKEY = os.path.expanduser("~/CLAUDE CODE PROJECTS/moss-dash/tools/assembly")
 
 COMMON = ["2 layers, 1.6 mm FR-4, 1 oz copper both sides",
@@ -170,13 +174,12 @@ def lines(board, parts, version_full):
 
 def main():
     stamp = datetime.date.today().isoformat()
-    os.makedirs(OUT, exist_ok=True)
     os.makedirs(BOMDIR, exist_ok=True)
     summary, bench = [], collections.OrderedDict()
     for board in BOARDS:
         folder, short = board["folder"], board["short"]
-        if os.path.isdir(os.path.join(OUT, folder)):
-            shutil.rmtree(os.path.join(OUT, folder))           # (only this script's own folders)
+        if os.path.isdir(order_dir(board)):
+            shutil.rmtree(order_dir(board))                    # (only this script's own folders)
         work = tempfile.mkdtemp(prefix=f"pcbway-{short}-")
         pcb = os.path.join(work, f"{short}.kicad_pcb")
         shutil.copy(os.path.join(ROOT, board["rel"]), pcb)
@@ -206,7 +209,7 @@ def main():
         loose_refs = {r for r, *_ in board["loose"]}
 
         for vdir, vtag, full in VERSIONS:
-            d = os.path.join(OUT, folder, f"{short}-THT_{vdir}")
+            d = os.path.join(order_dir(board), f"{short}-THT_{vdir}")
             os.makedirs(d)
             shutil.copy(gzip_path, os.path.join(d, gzip_name))
             rows = lines(board, parts, full)
@@ -301,7 +304,7 @@ def main():
     print("\n".join(summary))
     print(f"DigiKey bench set: {len(rows)} lines, about ${total:.2f} at single-piece prices"
           + (f"; SHORT or not found: {', '.join(short_list)}" if short_list else "; everything in stock"))
-    print("packages:", OUT, "\nparts list:", base + ".xlsx / .csv")
+    print("packages:", ", ".join(order_dir(b) for b in BOARDS), "\nparts list:", base + ".xlsx / .csv")
 
 
 if __name__ == "__main__":
